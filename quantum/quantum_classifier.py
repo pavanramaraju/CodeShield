@@ -1,4 +1,4 @@
-﻿"""
+"""
 quantum_classifier.py
 =====================
 Q-Shield Quantum-Kernel Anomaly Detector
@@ -41,7 +41,7 @@ _QISKIT_AVAILABLE = False
 _IMPORT_ERROR: Optional[str] = None
 
 try:
-    from qiskit.circuit.library import ZZFeatureMap
+    from qiskit.circuit.library import zz_feature_map  # Qiskit 2.1+ function API
     from qiskit.primitives import StatevectorSampler
     from qiskit_machine_learning.state_fidelities import ComputeUncompute
     from qiskit_machine_learning.kernels import FidelityQuantumKernel
@@ -115,7 +115,8 @@ def _validate_features(X: np.ndarray) -> np.ndarray:
 
 
 def _build_feature_map():
-    return ZZFeatureMap(feature_dimension=NUM_QUBITS, reps=FEATURE_REPS)
+    # Use the function API (Qiskit 2.1+) instead of deprecated ZZFeatureMap class
+    return zz_feature_map(feature_dimension=NUM_QUBITS, reps=FEATURE_REPS)
 
 
 def _build_quantum_kernel(feature_map) -> "FidelityQuantumKernel":
@@ -258,7 +259,7 @@ def train_quantum_model(X_train: Any, y_train: Any) -> Dict[str, Any]:
     _STATE.X_train_scaled = X_capped
     _STATE.y_train = y_capped
     _STATE.training_samples = len(X_capped)
-    _STATE.training_timestamp = datetime.datetime.utcnow().isoformat() + "Z"
+    _STATE.training_timestamp = datetime.datetime.now(datetime.UTC).isoformat()
     _STATE.train_accuracy_quantum = quantum_train_acc
     _STATE.train_accuracy_classical = classical_train_acc
     _STATE.warnings = result["warnings"].copy()
