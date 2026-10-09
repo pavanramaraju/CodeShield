@@ -1,0 +1,19 @@
+﻿# Q-Shield Quantum Module - Requirements
+# ========================================
+# Tested with Python 3.13
+
+# Core quantum computing
+qiskit>=2.0
+qiskit-aer>=0.17.0
+
+# Quantum machine learning
+qiskit-machine-learning>=0.9.0
+
+# Classical ML and numerics
+scikit-learn>=1.2
+numpy>=2.0
+scipy>=1.4
+
+# Testing
+pytest>=7.0
+pytest-cov>=4.0

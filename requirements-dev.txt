@@ -1,0 +1,11 @@
+﻿# Development and testing requirements
+-r requirements.txt
+
+# Code quality
+black
+isort
+flake8
+
+# Enhanced test reporting
+pytest-cov>=4.0
+pytest-html>=3.0
