@@ -1,4 +1,4 @@
-﻿"""
+"""
 tests/test_quantum_classifier.py
 ==================================
 Comprehensive test suite for the Q-Shield quantum-kernel classifier.
@@ -314,8 +314,12 @@ class TestGetModelStatus:
     def test_training_timestamp_set(self, trained_state):
         from quantum.quantum_classifier import get_model_status
         status = get_model_status()
-        assert status["training_timestamp"] is not None
-        assert status["training_timestamp"].endswith("Z")
+        ts = status["training_timestamp"]
+        assert ts is not None
+        # Accept both ISO-8601 UTC formats: trailing 'Z' or '+00:00'
+        assert ts.endswith("Z") or ts.endswith("+00:00"), (
+            f"Timestamp {ts!r} is not a valid UTC ISO-8601 string"
+        )
 
     def test_quantum_available_field(self, trained_state):
         from quantum.quantum_classifier import get_model_status
