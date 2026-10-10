@@ -121,25 +121,25 @@ export function AdaptiveDefensePanel({
   };
 
   return (
-    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1A2E3D] shadow-lg shadow-[#030B12]/40 select-none flex flex-col justify-between relative">
+    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1E3A52] shadow-xl shadow-[#030B12]/50 select-none flex flex-col justify-between relative">
       {/* Header */}
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-[#00C9A7]/15 border border-[#00C9A7]/30 flex items-center justify-center text-[#00C9A7]">
-              <ShieldCheck className="w-4 h-4 text-[#00C9A7]" />
+            <div className="w-8 h-8 rounded-xl bg-[#00F5A0]/20 border border-[#00F5A0]/40 flex items-center justify-center text-[#00F5A0] shadow-[0_0_12px_rgba(0,245,160,0.25)]">
+              <ShieldCheck className="w-4 h-4 text-[#00F5A0]" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-[#F4F8FC]">
+              <h3 className="text-sm font-extrabold text-[#FFFFFF]">
                 Defense Recommendations
               </h3>
-              <p className="text-[10px] text-[#A8BBC8]">
-                Controlled Adaptive Mitigation Engine · Subject: <span className="font-mono text-[#00E5FF]">{selectedEvent?.id || 'EVT-001'}</span>
+              <p className="text-[10px] text-[#CBD5E1]">
+                Controlled Adaptive Mitigation Engine · Subject: <span className="font-mono text-[#00E5FF] font-bold">{selectedEvent?.id || 'EVT-001'}</span>
               </p>
             </div>
           </div>
 
-          <span className="text-[10px] text-[#A8BBC8] bg-[#081722] px-2.5 py-1 rounded-full border border-[#1A2E3D]">
+          <span className="text-[10px] text-[#CBD5E1] bg-[#081722] px-2.5 py-1 rounded-full border border-[#1E3A52] font-semibold">
             Zero-Trust Policy Enclave
           </span>
         </div>
@@ -153,24 +153,24 @@ export function AdaptiveDefensePanel({
             return (
               <div
                 key={act.id}
-                className="p-3 rounded-xl bg-[#081722] border border-[#1A2E3D] hover:border-[#00E5FF]/40 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5"
+                className="p-3 rounded-xl bg-[#081722] border border-[#1E3A52] hover:border-[#00E5FF]/50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5"
               >
                 <div className="flex-1 overflow-hidden">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-xs font-bold text-[#F4F8FC] truncate">
+                    <span className="text-xs font-bold text-[#FFFFFF] truncate">
                       {act.title}
                     </span>
                     <span
-                      className={`text-[9px] font-bold px-1.5 py-0.2 rounded-md border uppercase ${
+                      className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded-md border uppercase ${
                         isHigh
-                          ? 'bg-[#EF4444]/15 border-[#EF4444]/30 text-[#EF4444]'
-                          : 'bg-[#F59E0B]/15 border-[#F59E0B]/30 text-[#F59E0B]'
+                          ? 'bg-[#EF4444]/20 border-[#EF4444] text-[#EF4444]'
+                          : 'bg-[#F59E0B]/20 border-[#F59E0B] text-[#F59E0B]'
                       }`}
                     >
                       {act.impactLevel} Impact
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#A8BBC8] leading-tight">
+                  <p className="text-[11px] text-[#E2E8F0] leading-tight">
                     {act.reason}
                   </p>
                 </div>
@@ -178,10 +178,10 @@ export function AdaptiveDefensePanel({
                 {/* Status / Enforce Button */}
                 <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
                   <span
-                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                    className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${
                       isExecuted
-                        ? 'bg-[#10B981]/15 border-[#10B981]/30 text-[#10B981]'
-                        : 'bg-[#5A7382]/15 border-[#5A7382]/30 text-[#A8BBC8]'
+                        ? 'bg-[#00F5A0]/20 border-[#00F5A0] text-[#00F5A0] shadow-[0_0_8px_rgba(0,245,160,0.2)]'
+                        : 'bg-[#1E3A52]/60 border-[#1E3A52] text-[#CBD5E1]'
                     }`}
                   >
                     {act.status}
@@ -190,7 +190,7 @@ export function AdaptiveDefensePanel({
                   {!isExecuted && (
                     <button
                       onClick={() => handleOpenConfirm(act)}
-                      className="px-2.5 py-1 rounded-lg bg-[#00E5FF]/15 hover:bg-[#00E5FF]/25 border border-[#00E5FF]/30 text-[11px] font-bold text-[#00E5FF] transition-colors cursor-pointer"
+                      className="px-2.5 py-1 rounded-lg bg-[#00E5FF]/20 hover:bg-[#00E5FF]/30 border border-[#00E5FF] text-[11px] font-extrabold text-[#00E5FF] transition-all cursor-pointer shadow-[0_0_8px_rgba(0,229,255,0.2)]"
                     >
                       Enforce →
                     </button>
@@ -203,11 +203,11 @@ export function AdaptiveDefensePanel({
       </div>
 
       {/* Safety Policy Guarantee Notice */}
-      <div className="mt-4 pt-3 border-t border-[#1A2E3D] text-[10px] text-[#5A7382] leading-tight flex items-center justify-between">
+      <div className="mt-4 pt-3 border-t border-[#1E3A52] text-[10px] text-[#CBD5E1] leading-tight flex items-center justify-between">
         <span>
-          🛡️ <strong>Safety Guarantee:</strong> High-impact mitigations enforce approval safeguards. No destructive attack-back actions.
+          🛡️ <strong className="text-[#FFFFFF]">Safety Guarantee:</strong> High-impact mitigations enforce approval safeguards. No destructive attack-back actions.
         </span>
-        <span className="font-mono text-[#10B981] font-semibold">
+        <span className="font-mono text-[#00F5A0] font-extrabold">
           POLICY CHECK: PASS
         </span>
       </div>
@@ -217,32 +217,32 @@ export function AdaptiveDefensePanel({
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#030B12]/80 backdrop-blur-sm animate-in fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#030B12]/85 backdrop-blur-md animate-in fade-in"
         >
-          <div className="bg-[#0B1D29] rounded-2xl w-full max-w-md p-5 border border-[#1A2E3D] shadow-2xl text-xs space-y-4">
+          <div className="bg-[#0B1D29] rounded-2xl w-full max-w-md p-5 border border-[#1E3A52] shadow-2xl text-xs space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#00E5FF]/15 border border-[#00E5FF]/30 flex items-center justify-center text-[#00E5FF]">
+              <div className="w-10 h-10 rounded-xl bg-[#00E5FF]/20 border border-[#00E5FF]/40 flex items-center justify-center text-[#00E5FF] shadow-[0_0_12px_rgba(0,229,255,0.25)]">
                 <ShieldAlert className="w-5 h-5 text-[#00E5FF]" />
               </div>
               <div>
-                <h4 className="font-bold text-sm text-[#F4F8FC]">
+                <h4 className="font-bold text-sm text-[#FFFFFF]">
                   Confirm Defensive Countermeasure
                 </h4>
-                <span className="text-[10px] text-[#A8BBC8]">
+                <span className="text-[10px] text-[#CBD5E1]">
                   Enclave Policy Verification
                 </span>
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-[#081722] border border-[#1A2E3D] space-y-1.5">
-              <span className="font-bold text-[#F4F8FC] block">
+            <div className="p-3 rounded-xl bg-[#081722] border border-[#1E3A52] space-y-1.5">
+              <span className="font-bold text-[#FFFFFF] block">
                 {confirmingAction.title}
               </span>
-              <p className="text-[#A8BBC8] text-[11px]">
+              <p className="text-[#E2E8F0] text-[11px]">
                 {confirmingAction.reason}
               </p>
-              <div className="pt-1.5 flex justify-between text-[10px] font-mono text-[#5A7382]">
-                <span>Target Subject: {selectedEvent?.id || 'EVT-001'}</span>
+              <div className="pt-1.5 flex justify-between text-[10px] font-mono text-[#CBD5E1]">
+                <span>Target Subject: <strong className="text-[#00E5FF]">{selectedEvent?.id || 'EVT-001'}</strong></span>
                 <span className="text-[#F59E0B] font-bold">
                   {confirmingAction.impactLevel} Impact Policy
                 </span>
@@ -253,14 +253,14 @@ export function AdaptiveDefensePanel({
               <button
                 onClick={() => setConfirmingAction(null)}
                 disabled={isProcessing}
-                className="px-3 py-1.5 rounded-lg bg-[#081722] border border-[#1A2E3D] text-[#A8BBC8] hover:text-[#F4F8FC] cursor-pointer"
+                className="px-3 py-1.5 rounded-lg bg-[#081722] border border-[#1E3A52] text-[#CBD5E1] hover:text-[#FFFFFF] cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleExecuteAction}
                 disabled={isProcessing}
-                className="px-4 py-1.5 rounded-lg bg-[#00E5FF] hover:bg-[#00C9A7] text-[#030B12] font-bold cursor-pointer transition-colors"
+                className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#00E5FF] to-[#00F5A0] hover:brightness-110 text-[#030B12] font-black cursor-pointer transition-all shadow-[0_0_12px_rgba(0,229,255,0.3)]"
               >
                 {isProcessing ? 'Enforcing...' : 'Authorize Action'}
               </button>

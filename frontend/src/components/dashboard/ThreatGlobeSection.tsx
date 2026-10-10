@@ -66,13 +66,13 @@ export function ThreatGlobeSection({
 
       {/* Top Header Bar inside Globe Section */}
       <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
-        <div className="flex items-center gap-2 pointer-events-auto bg-[#081722]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#1A2E3D] shadow-lg">
+        <div className="flex items-center gap-2 pointer-events-auto bg-[#081722]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#1E3A52] shadow-xl">
           <Globe className="w-4 h-4 text-[#00E5FF]" />
-          <span className="text-xs font-bold text-[#F4F8FC]">
+          <span className="text-xs font-black text-[#FFFFFF]">
             Live Global Threat Grid
           </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
-          <span className="text-[10px] text-[#10B981] font-semibold">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00F5A0] animate-pulse" />
+          <span className="text-[10px] text-[#00F5A0] font-bold">
             {isBackendConnected ? 'FastAPI Grid' : '16 Nodes Active'}
           </span>
         </div>
@@ -82,7 +82,7 @@ export function ThreatGlobeSection({
             onClick={toggleFullscreen}
             aria-label={isFullscreen ? 'Exit fullscreen' : 'Expand globe view'}
             title={isFullscreen ? 'Exit fullscreen' : 'Expand globe view'}
-            className="w-8 h-8 rounded-full bg-[#081722]/85 hover:bg-[#0B1D29] border border-[#1A2E3D] text-[#A8BBC8] hover:text-[#00E5FF] flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md shadow-lg"
+            className="w-8 h-8 rounded-full bg-[#081722]/90 hover:bg-[#0B1D29] border border-[#1E3A52] text-[#CBD5E1] hover:text-[#00E5FF] hover:border-[#00E5FF] flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md shadow-lg"
           >
             {isFullscreen ? (
               <Minimize2 className="w-4 h-4" />
@@ -95,62 +95,62 @@ export function ThreatGlobeSection({
 
       {/* 4 Floating Status Indicator Cards matching specification */}
       {/* Card 1: Top-Left — Threat Monitoring */}
-      <div className="absolute top-16 left-4 z-20 pointer-events-auto hidden sm:flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#081722]/85 backdrop-blur-md border border-[#1A2E3D] shadow-lg">
-        <div className="w-7 h-7 rounded-lg bg-[#0B1D29] border border-[#1A2E3D] flex items-center justify-center text-[#00E5FF]">
+      <div className="absolute top-16 left-4 z-20 pointer-events-auto hidden sm:flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#081722]/90 backdrop-blur-md border border-[#1E3A52] shadow-xl">
+        <div className="w-7 h-7 rounded-lg bg-[#0B1D29] border border-[#1E3A52] flex items-center justify-center text-[#00E5FF]">
           <Radar className="w-3.5 h-3.5 text-[#00E5FF]" />
         </div>
         <div className="flex flex-col">
-          <span className="text-[10px] text-[#A8BBC8] uppercase font-bold tracking-wider">
+          <span className="text-[10px] text-[#CBD5E1] uppercase font-bold tracking-wider">
             Threat Monitoring
           </span>
-          <span className="text-xs font-bold text-[#F4F8FC]">
+          <span className="text-xs font-black text-[#FFFFFF]">
             Active · Ingress Filtered
           </span>
         </div>
       </div>
 
       {/* Card 2: Top-Right — Analyzing Anomalies */}
-      <div className="absolute top-16 right-4 z-20 pointer-events-auto hidden sm:flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#081722]/85 backdrop-blur-md border border-[#1A2E3D] shadow-lg">
+      <div className="absolute top-16 right-4 z-20 pointer-events-auto hidden sm:flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#081722]/90 backdrop-blur-md border border-[#1E3A52] shadow-xl">
         <div className="flex flex-col text-right">
-          <span className="text-[10px] text-[#A8BBC8] uppercase font-bold tracking-wider">
+          <span className="text-[10px] text-[#CBD5E1] uppercase font-bold tracking-wider">
             Analyzing Anomalies
           </span>
-          <span className="text-xs font-bold text-[#00E5FF]">
+          <span className="text-xs font-black text-[#00E5FF]">
             Sliding Window Engine
           </span>
         </div>
-        <div className="w-7 h-7 rounded-lg bg-[#0B1D29] border border-[#1A2E3D] flex items-center justify-center text-[#00E5FF]">
+        <div className="w-7 h-7 rounded-lg bg-[#0B1D29] border border-[#1E3A52] flex items-center justify-center text-[#00E5FF]">
           <Cpu className="w-3.5 h-3.5 text-[#00E5FF]" />
         </div>
       </div>
 
       {/* Card 3: Bottom-Left — Quantum Analysis */}
-      <div className="absolute bottom-5 left-4 z-20 pointer-events-auto hidden sm:flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#081722]/85 backdrop-blur-md border border-[#1A2E3D] shadow-lg">
-        <div className="w-7 h-7 rounded-lg bg-[#0B1D29] border border-[#1A2E3D] flex items-center justify-center text-[#73CFFF]">
-          <Atom className="w-3.5 h-3.5 text-[#73CFFF]" />
+      <div className="absolute bottom-5 left-4 z-20 pointer-events-auto hidden sm:flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#081722]/90 backdrop-blur-md border border-[#1E3A52] shadow-xl">
+        <div className="w-7 h-7 rounded-lg bg-[#0B1D29] border border-[#1E3A52] flex items-center justify-center text-[#00E5FF]">
+          <Atom className="w-3.5 h-3.5 text-[#00E5FF]" />
         </div>
         <div className="flex flex-col">
-          <span className="text-[10px] text-[#A8BBC8] uppercase font-bold tracking-wider">
+          <span className="text-[10px] text-[#CBD5E1] uppercase font-bold tracking-wider">
             Quantum Analysis
           </span>
-          <span className="text-xs font-bold text-[#73CFFF]">
+          <span className="text-xs font-black text-[#00E5FF]">
             {isBackendConnected ? 'Qiskit Aer (Ready)' : 'Simulator Active'}
           </span>
         </div>
       </div>
 
       {/* Card 4: Bottom-Right — Defense Status */}
-      <div className="absolute bottom-5 right-4 z-20 pointer-events-auto hidden sm:flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#081722]/85 backdrop-blur-md border border-[#1A2E3D] shadow-lg">
+      <div className="absolute bottom-5 right-4 z-20 pointer-events-auto hidden sm:flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#081722]/90 backdrop-blur-md border border-[#1E3A52] shadow-xl">
         <div className="flex flex-col text-right">
-          <span className="text-[10px] text-[#A8BBC8] uppercase font-bold tracking-wider">
+          <span className="text-[10px] text-[#CBD5E1] uppercase font-bold tracking-wider">
             Defense Status
           </span>
-          <span className="text-xs font-bold text-[#10B981]">
+          <span className="text-xs font-black text-[#00F5A0]">
             Adaptive Mesh Online
           </span>
         </div>
-        <div className="w-7 h-7 rounded-lg bg-[#0B1D29] border border-[#1A2E3D] flex items-center justify-center text-[#10B981]">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#10B981]" />
+        <div className="w-7 h-7 rounded-lg bg-[#0B1D29] border border-[#1E3A52] flex items-center justify-center text-[#00F5A0]">
+          <ShieldCheck className="w-3.5 h-3.5 text-[#00F5A0]" />
         </div>
       </div>
     </div>

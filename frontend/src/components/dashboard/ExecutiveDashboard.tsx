@@ -192,9 +192,9 @@ export function ExecutiveDashboard({
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#030B12] p-2 sm:p-4 flex items-center justify-center select-none font-sans text-[#F4F8FC]">
+    <div className="min-h-screen w-full bg-[#030B12] p-2 sm:p-4 flex items-center justify-center select-none font-sans text-[#FFFFFF]">
       {/* Application Shell */}
-      <div className="w-full max-w-[1540px] bg-[#081722] rounded-3xl shadow-2xl border border-[#1A2E3D] flex flex-row overflow-hidden min-h-[95vh]">
+      <div className="w-full max-w-[1540px] bg-[#081722] rounded-3xl shadow-2xl border border-[#1E3A52] flex flex-row overflow-hidden min-h-[95vh]">
         {/* Left Sidebar Navigation */}
         <SidebarRail
           activeTab={activeTab}
@@ -238,14 +238,14 @@ export function ExecutiveDashboard({
 
           {/* Toast Notification */}
           {toastMessage && (
-            <div className="px-6 py-2.5 bg-[#00E5FF]/15 border-b border-[#00E5FF]/30 text-xs text-[#00E5FF] font-semibold flex items-center justify-between animate-in fade-in">
+            <div className="px-6 py-2.5 bg-[#00E5FF]/20 border-b border-[#00E5FF] text-xs text-[#00E5FF] font-bold flex items-center justify-between animate-in fade-in shadow-[0_0_12px_rgba(0,229,255,0.2)]">
               <span className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#00E5FF]" />
+                <CheckCircle2 className="w-4 h-4 text-[#00F5A0]" />
                 {toastMessage}
               </span>
               <button
                 onClick={() => setToastMessage(null)}
-                className="text-[#A8BBC8] hover:text-[#F4F8FC] cursor-pointer"
+                className="text-[#CBD5E1] hover:text-[#FFFFFF] cursor-pointer"
               >
                 ✕
               </button>
@@ -257,32 +257,32 @@ export function ExecutiveDashboard({
             {/* ======================================================= */}
             {/* 1. WELCOME SECTION (Section 5 of specification)        */}
             {/* ======================================================= */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-[#0B1D29] border border-[#1A2E3D] shadow-lg shadow-[#030B12]/40 relative overflow-hidden">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-[#0B1D29] border border-[#1E3A52] shadow-xl shadow-[#030B12]/50 relative overflow-hidden">
               {/* Subtle background glow */}
-              <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-[#00E5FF]/5 blur-3xl pointer-events-none" />
+              <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-[#00E5FF]/10 blur-3xl pointer-events-none" />
 
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <h1 className="text-xl sm:text-2xl font-black tracking-tight text-[#F4F8FC]">
+                  <h1 className="text-xl sm:text-2xl font-black tracking-tight text-[#FFFFFF]">
                     Security Operations Overview
                   </h1>
-                  <span className="px-2 py-0.5 rounded-full bg-[#00E5FF]/10 border border-[#00E5FF]/20 text-[10px] font-bold text-[#00E5FF]">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#00E5FF]/20 border border-[#00E5FF] text-[10px] font-extrabold text-[#00E5FF] shadow-[0_0_8px_rgba(0,229,255,0.25)]">
                     SOC 2.0
                   </span>
                 </div>
-                <p className="text-xs text-[#A8BBC8] max-w-2xl leading-relaxed">
+                <p className="text-xs text-[#E2E8F0] max-w-2xl leading-relaxed">
                   Monitor suspicious activity, investigate anomalies, and coordinate safer defense responses.
                 </p>
-                <div className="flex items-center gap-4 mt-2 text-[11px] text-[#5A7382]">
+                <div className="flex items-center gap-4 mt-2 text-[11px] text-[#CBD5E1]">
                   <span className="flex items-center gap-1.5 font-mono">
                     <Calendar className="w-3.5 h-3.5 text-[#00E5FF]" />
                     {liveDate}
                   </span>
                   <span className="flex items-center gap-1.5 font-mono">
-                    <Clock className="w-3.5 h-3.5 text-[#00C9A7]" />
+                    <Clock className="w-3.5 h-3.5 text-[#00F5A0]" />
                     {liveTime}
                   </span>
-                  <span>· Updated: <strong className="text-[#A8BBC8]">{lastRefreshed}</strong></span>
+                  <span>· Updated: <strong className="text-[#FFFFFF]">{lastRefreshed}</strong></span>
                 </div>
               </div>
 
@@ -294,7 +294,7 @@ export function ExecutiveDashboard({
                     setActiveTab('live-threat-monitor');
                   }}
                   aria-label="Toggle Live Threat Monitor Globe"
-                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#00C9A7] hover:brightness-110 text-[#030B12] text-xs font-bold flex items-center gap-2 shadow-[0_0_20px_rgba(0,229,255,0.25)] transition-all cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#00F5A0] hover:brightness-110 text-[#030B12] text-xs font-black flex items-center gap-2 shadow-[0_0_20px_rgba(0,229,255,0.35)] transition-all cursor-pointer"
                 >
                   <Globe className="w-4 h-4 text-[#030B12]" />
                   <span>Live Threat Monitor</span>
@@ -305,7 +305,7 @@ export function ExecutiveDashboard({
                   disabled={isRefreshing}
                   aria-label="Synchronize telemetry"
                   title="Synchronize telemetry"
-                  className="p-2 rounded-xl bg-[#081722] hover:bg-[#0B1D29] border border-[#1A2E3D] text-[#A8BBC8] hover:text-[#00E5FF] transition-colors cursor-pointer"
+                  className="p-2 rounded-xl bg-[#081722] hover:bg-[#0B1D29] border border-[#1E3A52] text-[#CBD5E1] hover:text-[#00E5FF] hover:border-[#00E5FF] transition-all cursor-pointer"
                 >
                   <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
                 </button>
@@ -314,7 +314,7 @@ export function ExecutiveDashboard({
                   onClick={handleExport}
                   aria-label="Export audit dataset"
                   title="Export audit dataset"
-                  className="p-2 rounded-xl bg-[#081722] hover:bg-[#0B1D29] border border-[#1A2E3D] text-[#A8BBC8] hover:text-[#00E5FF] transition-colors cursor-pointer"
+                  className="p-2 rounded-xl bg-[#081722] hover:bg-[#0B1D29] border border-[#1E3A52] text-[#CBD5E1] hover:text-[#00E5FF] hover:border-[#00E5FF] transition-all cursor-pointer"
                 >
                   <Download className="w-4 h-4" />
                 </button>

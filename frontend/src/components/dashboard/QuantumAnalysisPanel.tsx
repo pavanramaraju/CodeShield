@@ -76,22 +76,22 @@ export function QuantumAnalysisPanel({
   };
 
   return (
-    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1A2E3D] shadow-lg shadow-[#030B12]/40 select-none flex flex-col justify-between">
+    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1E3A52] shadow-xl shadow-[#030B12]/50 select-none flex flex-col justify-between">
       {/* Header */}
       <div>
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-[#73CFFF]/15 border border-[#73CFFF]/30 flex items-center justify-center text-[#73CFFF]">
+            <div className="w-8 h-8 rounded-xl bg-[#00E5FF]/20 border border-[#00E5FF]/40 flex items-center justify-center text-[#00E5FF] shadow-[0_0_12px_rgba(0,229,255,0.25)]">
               <Atom
-                className={`w-4 h-4 text-[#73CFFF] ${
+                className={`w-4 h-4 text-[#00E5FF] ${
                   isRunning ? 'animate-spin' : ''
                 }`}
               />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-[#F4F8FC]">Quantum Analysis</h3>
-              <p className="text-[10px] text-[#A8BBC8]">
-                Pipeline: <span className="font-mono text-[#73CFFF]">ZZFeatureMap (4 Qubits)</span>
+              <h3 className="text-sm font-extrabold text-[#FFFFFF]">Quantum Analysis</h3>
+              <p className="text-[10px] text-[#CBD5E1]">
+                Pipeline: <span className="font-mono text-[#00E5FF] font-bold">ZZFeatureMap (4 Qubits)</span>
               </p>
             </div>
           </div>
@@ -100,7 +100,7 @@ export function QuantumAnalysisPanel({
             onClick={handleRunSampleExecution}
             disabled={isRunning}
             aria-label="Execute quantum circuit simulation"
-            className="px-2.5 py-1 rounded-xl bg-[#73CFFF]/15 hover:bg-[#73CFFF]/25 border border-[#73CFFF]/30 text-[11px] font-bold text-[#73CFFF] flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50"
+            className="px-2.5 py-1 rounded-xl bg-[#00E5FF]/20 hover:bg-[#00E5FF]/30 border border-[#00E5FF] text-[11px] font-extrabold text-[#00E5FF] flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50 shadow-[0_0_10px_rgba(0,229,255,0.2)]"
           >
             <RotateCw className={`w-3 h-3 ${isRunning ? 'animate-spin' : ''}`} />
             <span>{isRunning ? 'Simulating...' : 'Run Circuit'}</span>
@@ -108,12 +108,12 @@ export function QuantumAnalysisPanel({
         </div>
 
         {/* Visual 5-Stage Pipeline */}
-        <div className="p-3 rounded-xl bg-[#081722] border border-[#1A2E3D] my-3">
+        <div className="p-3 rounded-xl bg-[#081722] border border-[#1E3A52] my-3">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#5A7382]">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#CBD5E1]">
               Kernel Workflow Pipeline
             </span>
-            <span className="text-[10px] text-[#73CFFF] font-semibold">
+            <span className="text-[10px] text-[#00E5FF] font-bold">
               4-Qubit Statevector
             </span>
           </div>
@@ -121,16 +121,16 @@ export function QuantumAnalysisPanel({
           <div className="grid grid-cols-5 gap-1 items-center">
             {pipelineStages.map((st, i) => (
               <div key={st.label} className="flex items-center">
-                <div className="flex-1 p-1.5 rounded-lg bg-[#0B1D29] border border-[#1A2E3D] text-center">
-                  <span className="text-[10px] font-bold text-[#F4F8FC] block truncate">
+                <div className="flex-1 p-1.5 rounded-lg bg-[#0B1D29] border border-[#1E3A52] text-center">
+                  <span className="text-[10px] font-bold text-[#FFFFFF] block truncate">
                     {st.label}
                   </span>
-                  <span className="text-[9px] text-[#A8BBC8] block truncate">
+                  <span className="text-[9px] text-[#CBD5E1] block truncate font-medium">
                     {st.desc}
                   </span>
                 </div>
                 {i < pipelineStages.length - 1 && (
-                  <ChevronRight className="w-3 h-3 text-[#5A7382] shrink-0 mx-0.5" />
+                  <ChevronRight className="w-3 h-3 text-[#00E5FF] shrink-0 mx-0.5" />
                 )}
               </div>
             ))}
@@ -139,47 +139,47 @@ export function QuantumAnalysisPanel({
 
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 my-3 text-xs">
-          <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1A2E3D]">
-            <span className="text-[10px] text-[#A8BBC8] block">Events Submitted</span>
-            <span className="text-base font-black font-mono text-[#F4F8FC]">
+          <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1E3A52] hover:border-[#00E5FF]/40 transition-colors">
+            <span className="text-[10px] text-[#CBD5E1] block font-semibold">Events Submitted</span>
+            <span className="text-base font-black font-mono text-[#FFFFFF]">
               {quantumStats.eventsSubmitted}
             </span>
           </div>
 
-          <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1A2E3D]">
-            <span className="text-[10px] text-[#A8BBC8] block">Execution Time</span>
+          <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1E3A52] hover:border-[#00E5FF]/40 transition-colors">
+            <span className="text-[10px] text-[#CBD5E1] block font-semibold">Execution Time</span>
             <span className="text-base font-black font-mono text-[#00E5FF]">
               {quantumStats.executionTimeMs} ms
             </span>
           </div>
 
-          <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1A2E3D]">
-            <span className="text-[10px] text-[#A8BBC8] block">Quantum Fidelity</span>
-            <span className="text-base font-black font-mono text-[#73CFFF]">
+          <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1E3A52] hover:border-[#00F5A0]/40 transition-colors">
+            <span className="text-[10px] text-[#CBD5E1] block font-semibold">Quantum Fidelity</span>
+            <span className="text-base font-black font-mono text-[#00F5A0]">
               {(quantumStats.similarityScore * 100).toFixed(1)}%
             </span>
           </div>
 
-          <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1A2E3D]">
-            <span className="text-[10px] text-[#A8BBC8] block">Classical Baseline</span>
-            <span className="text-base font-black font-mono text-[#A8BBC8]">
+          <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1E3A52] hover:border-[#1E3A52] transition-colors">
+            <span className="text-[10px] text-[#CBD5E1] block font-semibold">Classical Baseline</span>
+            <span className="text-base font-black font-mono text-[#FFFFFF]">
               {(quantumStats.classicalBaseline * 100).toFixed(1)}%
             </span>
           </div>
         </div>
 
         {/* Circuit Visualization / Bitstring distribution snippet */}
-        <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1A2E3D] flex items-center justify-between text-[11px]">
+        <div className="p-2.5 rounded-xl bg-[#081722] border border-[#1E3A52] flex items-center justify-between text-[11px]">
           <div className="flex items-center gap-2">
-            <Layers className="w-3.5 h-3.5 text-[#73CFFF]" />
-            <span className="text-[#A8BBC8]">Circuit Depth:</span>
-            <span className="font-mono font-bold text-[#F4F8FC]">
+            <Layers className="w-3.5 h-3.5 text-[#00E5FF]" />
+            <span className="text-[#CBD5E1] font-medium">Circuit Depth:</span>
+            <span className="font-mono font-bold text-[#FFFFFF]">
               {quantumStats.depth} gates · {quantumStats.shots} shots
             </span>
           </div>
           <button
             onClick={onOpenDetailedModal}
-            className="text-[#73CFFF] hover:underline font-semibold cursor-pointer text-[10px]"
+            className="text-[#00E5FF] hover:text-[#FFFFFF] hover:underline font-bold cursor-pointer text-[10px] transition-colors"
           >
             Inspect Quantum Circuit →
           </button>
@@ -187,8 +187,8 @@ export function QuantumAnalysisPanel({
       </div>
 
       {/* Honest Scientific Disclaimer */}
-      <div className="mt-3 pt-2.5 border-t border-[#1A2E3D] text-[10px] text-[#5A7382] leading-tight">
-        <span className="text-[#73CFFF] font-semibold">Note:</span> {quantumStats.disclaimer}
+      <div className="mt-3 pt-2.5 border-t border-[#1E3A52] text-[10px] text-[#CBD5E1] leading-tight">
+        <span className="text-[#00E5FF] font-bold">Note:</span> {quantumStats.disclaimer}
       </div>
     </div>
   );

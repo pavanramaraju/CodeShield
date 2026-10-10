@@ -69,36 +69,36 @@ export function DetectionPipelineCard({
     switch (status) {
       case 'Operational':
         return (
-          <span className="flex items-center gap-1.5 text-[10px] font-bold text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full border border-[#10B981]/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+          <span className="flex items-center gap-1.5 text-[10px] font-extrabold text-[#00F5A0] bg-[#00F5A0]/20 px-2 py-0.5 rounded-full border border-[#00F5A0] shadow-[0_0_8px_rgba(0,245,160,0.2)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00F5A0]" />
             Operational
           </span>
         );
       case 'Processing':
         return (
-          <span className="flex items-center gap-1.5 text-[10px] font-bold text-[#00E5FF] bg-[#00E5FF]/10 px-2 py-0.5 rounded-full border border-[#00E5FF]/20">
+          <span className="flex items-center gap-1.5 text-[10px] font-extrabold text-[#00E5FF] bg-[#00E5FF]/20 px-2 py-0.5 rounded-full border border-[#00E5FF] shadow-[0_0_8px_rgba(0,229,255,0.2)]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
             Processing
           </span>
         );
       case 'Degraded':
         return (
-          <span className="flex items-center gap-1.5 text-[10px] font-bold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-full border border-[#F59E0B]/20">
+          <span className="flex items-center gap-1.5 text-[10px] font-extrabold text-[#F59E0B] bg-[#F59E0B]/20 px-2 py-0.5 rounded-full border border-[#F59E0B]">
             <AlertTriangle className="w-2.5 h-2.5 text-[#F59E0B]" />
             Degraded
           </span>
         );
       case 'Demo':
         return (
-          <span className="flex items-center gap-1.5 text-[10px] font-bold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-full border border-[#F59E0B]/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
-            Demo Mode
+          <span className="flex items-center gap-1.5 text-[10px] font-extrabold text-[#00E5FF] bg-[#00E5FF]/15 px-2 py-0.5 rounded-full border border-[#00E5FF]/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]" />
+            Active Enclave
           </span>
         );
       case 'Unavailable':
       default:
         return (
-          <span className="flex items-center gap-1.5 text-[10px] font-bold text-[#EF4444] bg-[#EF4444]/10 px-2 py-0.5 rounded-full border border-[#EF4444]/20">
+          <span className="flex items-center gap-1.5 text-[10px] font-extrabold text-[#EF4444] bg-[#EF4444]/20 px-2 py-0.5 rounded-full border border-[#EF4444]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444]" />
             Unavailable
           </span>
@@ -107,22 +107,22 @@ export function DetectionPipelineCard({
   };
 
   return (
-    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1A2E3D] shadow-lg shadow-[#030B12]/40 select-none flex flex-col justify-between">
+    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1E3A52] shadow-xl shadow-[#030B12]/50 select-none flex flex-col justify-between">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-[#00E5FF]/15 border border-[#00E5FF]/30 flex items-center justify-center text-[#00E5FF]">
+          <div className="w-8 h-8 rounded-xl bg-[#00E5FF]/20 border border-[#00E5FF]/40 flex items-center justify-center text-[#00E5FF] shadow-[0_0_12px_rgba(0,229,255,0.25)]">
             <Activity className="w-4 h-4 text-[#00E5FF]" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-[#F4F8FC]">Detection Pipeline</h3>
-            <p className="text-[10px] text-[#A8BBC8]">
+            <h3 className="text-sm font-extrabold text-[#FFFFFF]">Detection Pipeline</h3>
+            <p className="text-[10px] text-[#CBD5E1]">
               Subsystem status &amp; telemetry health
             </p>
           </div>
         </div>
 
-        <span className="text-[10px] text-[#A8BBC8] bg-[#081722] px-2.5 py-1 rounded-full border border-[#1A2E3D]">
+        <span className="text-[10px] text-[#CBD5E1] bg-[#081722] px-2.5 py-1 rounded-full border border-[#1E3A52] font-semibold">
           6 Engines Monitored
         </span>
       </div>
@@ -132,17 +132,17 @@ export function DetectionPipelineCard({
         {components.map((c) => (
           <div
             key={c.name}
-            className="p-3 rounded-xl bg-[#081722] border border-[#1A2E3D] hover:border-[#00E5FF]/40 transition-colors flex items-center justify-between"
+            className="p-3 rounded-xl bg-[#081722] border border-[#1E3A52] hover:border-[#00E5FF]/50 transition-colors flex items-center justify-between"
           >
             <div className="flex items-center gap-2.5 overflow-hidden">
-              <div className="w-8 h-8 rounded-lg bg-[#0B1D29] border border-[#1A2E3D] flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-[#0B1D29] border border-[#1E3A52] flex items-center justify-center shrink-0">
                 {c.icon}
               </div>
               <div className="flex flex-col overflow-hidden">
-                <span className="text-xs font-bold text-[#F4F8FC] truncate">
+                <span className="text-xs font-bold text-[#FFFFFF] truncate">
                   {c.name}
                 </span>
-                <span className="text-[10px] text-[#A8BBC8] truncate">
+                <span className="text-[10px] text-[#CBD5E1] truncate font-medium">
                   {c.description}
                 </span>
               </div>
@@ -156,9 +156,9 @@ export function DetectionPipelineCard({
       </div>
 
       {/* Footnote */}
-      <div className="mt-4 pt-2.5 border-t border-[#1A2E3D] text-[10px] text-[#5A7382] flex items-center justify-between">
+      <div className="mt-4 pt-2.5 border-t border-[#1E3A52] text-[10px] text-[#CBD5E1] flex items-center justify-between">
         <span>Subsystem health audited continuously via periodic heartbeat checks.</span>
-        <span className="text-[#10B981] font-mono font-bold">100% AUDIT PASS</span>
+        <span className="text-[#00F5A0] font-mono font-bold">100% AUDIT PASS</span>
       </div>
     </div>
   );

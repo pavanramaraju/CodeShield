@@ -33,27 +33,27 @@ export function SecurityInsightsPanel({
       title: 'Quantum Kernel Disambiguation Efficiency',
       detail: '84 ambiguous edge cases referred to the Qiskit ZZFeatureMap circuit; 81 resolved with >0.96 state fidelity.',
       tag: 'Quantum Disambiguation',
-      color: '#73CFFF',
+      color: '#00E5FF',
     },
     {
       title: 'Adaptive Mitigation Rate Limitation Performance',
       detail: 'Automated IP drop policies curtailed volumetric probe persistence by 89% without benign session disruption.',
       tag: 'Adaptive Policy',
-      color: '#10B981',
+      color: '#00F5A0',
     },
   ];
 
   return (
-    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1A2E3D] shadow-lg shadow-[#030B12]/40 select-none flex flex-col justify-between">
+    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1E3A52] shadow-xl shadow-[#030B12]/50 select-none flex flex-col justify-between">
       {/* Header with Title and View Report Action */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-[#00E5FF]/15 border border-[#00E5FF]/30 flex items-center justify-center text-[#00E5FF]">
+          <div className="w-8 h-8 rounded-xl bg-[#00E5FF]/20 border border-[#00E5FF]/40 flex items-center justify-center text-[#00E5FF] shadow-[0_0_12px_rgba(0,229,255,0.25)]">
             <FileText className="w-4 h-4 text-[#00E5FF]" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-[#F4F8FC]">Security Insights</h3>
-            <p className="text-[10px] text-[#A8BBC8]">
+            <h3 className="text-sm font-extrabold text-[#FFFFFF]">Security Insights</h3>
+            <p className="text-[10px] text-[#CBD5E1]">
               Evidence-based forensic observations &amp; audit reports
             </p>
           </div>
@@ -63,14 +63,14 @@ export function SecurityInsightsPanel({
           <button
             onClick={onExportReport}
             aria-label="Export audit report as JSON"
-            className="px-2.5 py-1 rounded-lg bg-[#081722] hover:bg-[#0B1D29] border border-[#1A2E3D] text-[11px] font-semibold text-[#A8BBC8] hover:text-[#F4F8FC] flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="px-2.5 py-1 rounded-lg bg-[#081722] hover:bg-[#0B1D29] border border-[#1E3A52] text-[11px] font-bold text-[#CBD5E1] hover:text-[#FFFFFF] hover:border-[#00E5FF] flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <Download className="w-3 h-3" />
             <span className="hidden sm:inline">Export</span>
           </button>
           <button
             onClick={onViewReport}
-            className="px-3 py-1 rounded-lg bg-[#00E5FF]/15 hover:bg-[#00E5FF]/25 border border-[#00E5FF]/30 text-[11px] font-bold text-[#00E5FF] flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="px-3 py-1 rounded-lg bg-[#00E5FF]/20 hover:bg-[#00E5FF]/30 border border-[#00E5FF] text-[11px] font-extrabold text-[#00E5FF] flex items-center gap-1.5 transition-all cursor-pointer shadow-[0_0_8px_rgba(0,229,255,0.2)]"
           >
             <span>View Report</span>
             <ExternalLink className="w-3 h-3" />
@@ -83,7 +83,7 @@ export function SecurityInsightsPanel({
         {observations.map((obs) => (
           <div
             key={obs.title}
-            className="p-3 rounded-xl bg-[#081722] border border-[#1A2E3D] hover:border-[#00E5FF]/40 transition-colors flex flex-col justify-between"
+            className="p-3 rounded-xl bg-[#081722] border border-[#1E3A52] hover:border-[#00E5FF]/50 transition-colors flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-1.5">
@@ -91,18 +91,18 @@ export function SecurityInsightsPanel({
                   className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-md border uppercase"
                   style={{
                     color: obs.color,
-                    borderColor: `${obs.color}40`,
-                    backgroundColor: `${obs.color}15`,
+                    borderColor: `${obs.color}60`,
+                    backgroundColor: `${obs.color}20`,
                   }}
                 >
                   {obs.tag}
                 </span>
-                <span className="text-[10px] font-mono text-[#5A7382]">Verified Observation</span>
+                <span className="text-[10px] font-mono text-[#94A3B8]">Verified Observation</span>
               </div>
-              <h4 className="text-xs font-bold text-[#F4F8FC] mb-1">
+              <h4 className="text-xs font-bold text-[#FFFFFF] mb-1">
                 {obs.title}
               </h4>
-              <p className="text-[11px] text-[#A8BBC8] leading-relaxed">
+              <p className="text-[11px] text-[#E2E8F0] leading-relaxed">
                 {obs.detail}
               </p>
             </div>
@@ -111,9 +111,9 @@ export function SecurityInsightsPanel({
       </div>
 
       {/* Footer */}
-      <div className="mt-4 pt-2.5 border-t border-[#1A2E3D] flex items-center justify-between text-[10px] text-[#5A7382]">
+      <div className="mt-4 pt-2.5 border-t border-[#1E3A52] flex items-center justify-between text-[10px] text-[#CBD5E1]">
         <span>Computed from verified telemetry audit trails. Zero fabricated metrics.</span>
-        <span className="font-mono text-[#00E5FF]">NIST CSF 2.0 / SOC-2 COMPLIANT</span>
+        <span className="font-mono text-[#00E5FF] font-bold">NIST CSF 2.0 / SOC-2 COMPLIANT</span>
       </div>
     </div>
   );

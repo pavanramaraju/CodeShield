@@ -96,52 +96,52 @@ export function ThreatActivityOverview({
   }, [chartData]);
 
   return (
-    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1A2E3D] shadow-lg shadow-[#030B12]/40 relative select-none flex flex-col justify-between">
+    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1E3A52] shadow-xl shadow-[#030B12]/50 relative select-none flex flex-col justify-between">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-sm font-bold text-[#F4F8FC] tracking-wide">
+            <h2 className="text-sm font-extrabold text-[#FFFFFF] tracking-wide">
               Threat Activity Overview
             </h2>
             <span
               title="Multi-severity timeline telemetry assessed across classical heuristics and quantum verification"
-              className="text-[#5A7382] hover:text-[#00E5FF] cursor-pointer"
+              className="text-[#94A3B8] hover:text-[#00E5FF] cursor-pointer"
             >
               <Info className="w-3.5 h-3.5" />
             </span>
           </div>
-          <p className="text-[11px] text-[#A8BBC8] mt-0.5">
-            Total observed: <strong className="text-[#F4F8FC]">{totalEventsInPeriod.toLocaleString()}</strong> events in {activeRange}
+          <p className="text-[11px] text-[#CBD5E1] mt-0.5">
+            Total observed: <strong className="text-[#FFFFFF]">{totalEventsInPeriod.toLocaleString()}</strong> events in {activeRange}
           </p>
         </div>
 
         {/* Severity Legend & Range Selector */}
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="flex items-center gap-2 text-[10px] font-semibold">
-            <span className="flex items-center gap-1 text-[#10B981]">
-              <span className="w-2 h-2 rounded-full bg-[#10B981]" /> Low
+          <div className="flex items-center gap-2.5 text-[10px] font-bold">
+            <span className="flex items-center gap-1.5 text-[#00F5A0]">
+              <span className="w-2 h-2 rounded-full bg-[#00F5A0] shadow-[0_0_6px_#00F5A0]" /> Low
             </span>
-            <span className="flex items-center gap-1 text-[#F59E0B]">
-              <span className="w-2 h-2 rounded-full bg-[#F59E0B]" /> Medium
+            <span className="flex items-center gap-1.5 text-[#F59E0B]">
+              <span className="w-2 h-2 rounded-full bg-[#F59E0B] shadow-[0_0_6px_#F59E0B]" /> Medium
             </span>
-            <span className="flex items-center gap-1 text-[#F97316]">
-              <span className="w-2 h-2 rounded-full bg-[#F97316]" /> High
+            <span className="flex items-center gap-1.5 text-[#F97316]">
+              <span className="w-2 h-2 rounded-full bg-[#F97316] shadow-[0_0_6px_#F97316]" /> High
             </span>
-            <span className="flex items-center gap-1 text-[#EF4444]">
-              <span className="w-2 h-2 rounded-full bg-[#EF4444]" /> Critical
+            <span className="flex items-center gap-1.5 text-[#EF4444]">
+              <span className="w-2 h-2 rounded-full bg-[#EF4444] shadow-[0_0_6px_#EF4444]" /> Critical
             </span>
           </div>
 
-          <div className="flex items-center bg-[#081722] rounded-full p-0.5 border border-[#1A2E3D] text-xs">
+          <div className="flex items-center bg-[#081722] rounded-full p-0.5 border border-[#1E3A52] text-xs">
             {(['15m', '1h', '24h', '7d'] as TimeRange[]).map((r) => (
               <button
                 key={r}
                 onClick={() => handleRange(r)}
-                className={`px-2.5 py-0.5 rounded-full font-semibold transition-all cursor-pointer ${
+                className={`px-2.5 py-0.5 rounded-full font-bold transition-all cursor-pointer ${
                   activeRange === r
-                    ? 'bg-[#00E5FF] text-[#030B12] shadow-xs'
-                    : 'text-[#A8BBC8] hover:text-[#F4F8FC]'
+                    ? 'bg-[#00E5FF] text-[#030B12] shadow-[0_0_10px_rgba(0,229,255,0.4)]'
+                    : 'text-[#CBD5E1] hover:text-[#FFFFFF]'
                 }`}
               >
                 {r}
@@ -160,8 +160,8 @@ export function ThreatActivityOverview({
           >
             <defs>
               <linearGradient id="colorLow" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#10B981" stopOpacity={0.4} />
-                <stop offset="95%" stopColor="#10B981" stopOpacity={0.0} />
+                <stop offset="5%" stopColor="#00F5A0" stopOpacity={0.45} />
+                <stop offset="95%" stopColor="#00F5A0" stopOpacity={0.0} />
               </linearGradient>
               <linearGradient id="colorMed" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#F59E0B" stopOpacity={0.4} />
@@ -179,32 +179,34 @@ export function ThreatActivityOverview({
 
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke="#1A2E3D"
+              stroke="#1E3A52"
               vertical={false}
             />
 
             <XAxis
               dataKey="time"
-              stroke="#5A7382"
+              stroke="#94A3B8"
               fontSize={10}
               tickLine={false}
-              axisLine={{ stroke: '#1A2E3D' }}
+              axisLine={{ stroke: '#1E3A52' }}
+              tick={{ fill: '#CBD5E1', fontSize: 10 }}
             />
             <YAxis
-              stroke="#5A7382"
+              stroke="#94A3B8"
               fontSize={10}
               tickLine={false}
-              axisLine={{ stroke: '#1A2E3D' }}
+              axisLine={{ stroke: '#1E3A52' }}
+              tick={{ fill: '#CBD5E1', fontSize: 10 }}
             />
 
             <Tooltip
               contentStyle={{
                 backgroundColor: '#081722',
-                borderColor: '#1A2E3D',
+                borderColor: '#00E5FF',
                 borderRadius: '12px',
                 fontSize: '11px',
-                color: '#F4F8FC',
-                boxShadow: '0 8px 24px rgba(3, 11, 18, 0.8)',
+                color: '#FFFFFF',
+                boxShadow: '0 8px 24px rgba(0, 229, 255, 0.25)',
               }}
               formatter={(value, name) => {
                 const label =
@@ -222,7 +224,7 @@ export function ThreatActivityOverview({
             <Area
               type="monotone"
               dataKey="low"
-              stroke="#10B981"
+              stroke="#00F5A0"
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorLow)"
@@ -256,22 +258,22 @@ export function ThreatActivityOverview({
       </div>
 
       {/* Severity Breakdown Bar */}
-      <div className="mt-4 pt-3 border-t border-[#1A2E3D] grid grid-cols-4 gap-2 text-center text-xs">
-        <div className="bg-[#081722] p-2 rounded-xl border border-[#1A2E3D]">
-          <span className="text-[10px] text-[#A8BBC8] block">Low-Risk</span>
-          <span className="font-bold text-[#10B981]">{severityTotals.low.toLocaleString()}</span>
+      <div className="mt-4 pt-3 border-t border-[#1E3A52] grid grid-cols-4 gap-2 text-center text-xs">
+        <div className="bg-[#081722] p-2 rounded-xl border border-[#1E3A52] hover:border-[#00F5A0]/50 transition-colors">
+          <span className="text-[10px] text-[#CBD5E1] block font-semibold">Low-Risk</span>
+          <span className="font-extrabold text-[#00F5A0] text-sm">{severityTotals.low.toLocaleString()}</span>
         </div>
-        <div className="bg-[#081722] p-2 rounded-xl border border-[#1A2E3D]">
-          <span className="text-[10px] text-[#A8BBC8] block">Medium-Risk</span>
-          <span className="font-bold text-[#F59E0B]">{severityTotals.medium.toLocaleString()}</span>
+        <div className="bg-[#081722] p-2 rounded-xl border border-[#1E3A52] hover:border-[#F59E0B]/50 transition-colors">
+          <span className="text-[10px] text-[#CBD5E1] block font-semibold">Medium-Risk</span>
+          <span className="font-extrabold text-[#F59E0B] text-sm">{severityTotals.medium.toLocaleString()}</span>
         </div>
-        <div className="bg-[#081722] p-2 rounded-xl border border-[#1A2E3D]">
-          <span className="text-[10px] text-[#A8BBC8] block">High-Risk</span>
-          <span className="font-bold text-[#F97316]">{severityTotals.high.toLocaleString()}</span>
+        <div className="bg-[#081722] p-2 rounded-xl border border-[#1E3A52] hover:border-[#F97316]/50 transition-colors">
+          <span className="text-[10px] text-[#CBD5E1] block font-semibold">High-Risk</span>
+          <span className="font-extrabold text-[#F97316] text-sm">{severityTotals.high.toLocaleString()}</span>
         </div>
-        <div className="bg-[#081722] p-2 rounded-xl border border-[#1A2E3D]">
-          <span className="text-[10px] text-[#A8BBC8] block">Critical</span>
-          <span className="font-bold text-[#EF4444]">{severityTotals.critical.toLocaleString()}</span>
+        <div className="bg-[#081722] p-2 rounded-xl border border-[#1E3A52] hover:border-[#EF4444]/50 transition-colors">
+          <span className="text-[10px] text-[#CBD5E1] block font-semibold">Critical</span>
+          <span className="font-extrabold text-[#EF4444] text-sm">{severityTotals.critical.toLocaleString()}</span>
         </div>
       </div>
     </div>

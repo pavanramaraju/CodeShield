@@ -75,61 +75,61 @@ export function AttackTimelinePanel({
   ];
 
   return (
-    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1A2E3D] shadow-lg shadow-[#030B12]/40 select-none flex flex-col justify-between">
+    <div className="bg-[#0B1D29] rounded-2xl p-5 border border-[#1E3A52] shadow-xl shadow-[#030B12]/50 select-none flex flex-col justify-between">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-[#00E5FF]/15 border border-[#00E5FF]/30 flex items-center justify-center text-[#00E5FF]">
+          <div className="w-8 h-8 rounded-xl bg-[#00E5FF]/20 border border-[#00E5FF]/40 flex items-center justify-center text-[#00E5FF] shadow-[0_0_12px_rgba(0,229,255,0.25)]">
             <GitCommit className="w-4 h-4 text-[#00E5FF]" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-[#F4F8FC]">Attack Timeline</h3>
-            <p className="text-[10px] text-[#A8BBC8]">
-              Lifecycle Progression · Subject: <span className="font-mono text-[#00E5FF]">{activeEventId}</span>
+            <h3 className="text-sm font-extrabold text-[#FFFFFF]">Attack Timeline</h3>
+            <p className="text-[10px] text-[#CBD5E1]">
+              Lifecycle Progression · Subject: <span className="font-mono text-[#00E5FF] font-bold">{activeEventId}</span>
             </p>
           </div>
         </div>
 
-        <span className="px-2.5 py-1 rounded-full bg-[#081722] border border-[#1A2E3D] text-[10px] font-semibold text-[#10B981] flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
+        <span className="px-2.5 py-1 rounded-full bg-[#081722] border border-[#00F5A0]/40 text-[10px] font-bold text-[#00F5A0] flex items-center gap-1.5 shadow-[0_0_8px_rgba(0,245,160,0.2)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00F5A0] animate-pulse" />
           End-to-End Traced
         </span>
       </div>
 
       {/* Connected Timeline Nodes */}
-      <div className="space-y-3 relative before:absolute before:left-3.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-[#1A2E3D]">
+      <div className="space-y-3 relative before:absolute before:left-3.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-[#1E3A52]">
         {stages.map((st) => (
           <div key={st.stage} className="relative flex items-start gap-3 pl-1">
             {/* Timeline Node Icon */}
             <div
               className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 border z-10 bg-[#0B1D29]"
               style={{
-                borderColor: `${st.color}50`,
-                backgroundColor: `${st.color}15`,
+                borderColor: `${st.color}70`,
+                backgroundColor: `${st.color}20`,
               }}
             >
               {st.icon}
             </div>
 
             {/* Node Content Card */}
-            <div className="flex-1 p-2.5 rounded-xl bg-[#081722] border border-[#1A2E3D] hover:border-[#00E5FF]/40 transition-colors">
+            <div className="flex-1 p-2.5 rounded-xl bg-[#081722] border border-[#1E3A52] hover:border-[#00E5FF]/50 transition-colors">
               <div className="flex items-center justify-between text-xs mb-1">
-                <span className="font-bold text-[#F4F8FC]">{st.stage}</span>
+                <span className="font-bold text-[#FFFFFF]">{st.stage}</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#5A7382]">{st.time}</span>
+                  <span className="text-[10px] font-mono text-[#94A3B8]">{st.time}</span>
                   <span
                     className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-md border uppercase"
                     style={{
-                      borderColor: `${st.color}40`,
+                      borderColor: `${st.color}60`,
                       color: st.color,
-                      backgroundColor: `${st.color}10`,
+                      backgroundColor: `${st.color}20`,
                     }}
                   >
                     {st.status}
                   </span>
                 </div>
               </div>
-              <p className="text-[11px] text-[#A8BBC8] leading-relaxed">
+              <p className="text-[11px] text-[#E2E8F0] leading-relaxed">
                 {st.evidence}
               </p>
             </div>
@@ -138,9 +138,9 @@ export function AttackTimelinePanel({
       </div>
 
       {/* Footnote */}
-      <div className="mt-3 pt-2.5 border-t border-[#1A2E3D] flex items-center justify-between text-[10px] text-[#5A7382]">
-        <span>Zero-Trust Forensic Assurance Standard</span>
-        <span className="font-mono text-[#A8BBC8]">State: FULLY_RECORDED</span>
+      <div className="mt-4 pt-2.5 border-t border-[#1E3A52] text-[10px] text-[#CBD5E1] flex items-center justify-between">
+        <span>Causal dependency graphed across multi-stage kill chain.</span>
+        <span className="text-[#00E5FF] font-mono font-bold">100% CORRELATED</span>
       </div>
     </div>
   );
