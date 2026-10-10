@@ -118,8 +118,8 @@ export function BackgroundAtmosphere({ reducedMotion = false }: BackgroundAtmosp
         color="#38D9FF"
       />
 
-      {/* 4. Deep navy ambient base illumination */}
-      <ambientLight intensity={0.8} color="#051824" />
+      {/* 4. Deep navy ambient base illumination for high contrast */}
+      <ambientLight intensity={0.45} color="#020B14" />
 
       {/* ========================================================= */}
       {/* BACKGROUND PARTICLES & GRID WITH DEPTH                    */}

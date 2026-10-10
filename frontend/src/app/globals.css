@@ -71,3 +71,14 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #00E6C3;
 }
+
+/* Completely hide Next.js development indicator badge and debug artifacts */
+nextjs-portal,
+[data-nextjs-dev-tools-button],
+[data-nextjs-toast],
+div[data-nextjs-dialog-overlay] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}

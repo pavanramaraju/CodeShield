@@ -18,13 +18,13 @@ export interface GlobalHub {
 export interface ArcConfig {
   fromId: string;
   toId: string;
-  isMajorTransfer: boolean; // true = white-to-gold high-volume trail, false = cyan/ice-blue
+  isMajorTransfer: boolean; // true = white-gold high-throughput trail, false = cyan/ice-blue
+  color?: string;
   speed: number;
   offset: number;
-  bidirectional?: boolean;
 }
 
-// 16 Real Global Cybersecurity Hubs & Quantum Telemetry Centers
+// 16 Global Cybersecurity Hubs & Quantum Telemetry Centers
 export const GLOBAL_HUBS: GlobalHub[] = [
   { id: 'wdc', name: 'Washington D.C.', code: 'US-CYBER', lat: 38.9, lon: -77.04, isPrimary: true, label: 'US-EAST // 38.9°N' },
   { id: 'sfo', name: 'Silicon Valley', code: 'SFO-CORE', lat: 37.77, lon: -122.42, isPrimary: false, label: 'US-WEST // 37.8°N' },
@@ -44,34 +44,73 @@ export const GLOBAL_HUBS: GlobalHub[] = [
   { id: 'tlv', name: 'Tel Aviv', code: 'TLV-CYBER', lat: 32.08, lon: 34.78, isPrimary: false, label: 'TLV-SEC // 32.1°N' },
 ];
 
-// Arcs between global hubs
+// Connection Arcs: white-gold for selected active transfers, cyan/ice-blue for normal connections
 export const ARC_CONFIGS: ArcConfig[] = [
-  // Major Data Transfers (White-to-Gold High-Throughput Trails)
-  { fromId: 'nyc', toId: 'lon', isMajorTransfer: true, speed: 0.16, offset: 0.05 },
-  { fromId: 'sfo', toId: 'tyo', isMajorTransfer: true, speed: 0.14, offset: 0.35 },
-  { fromId: 'lon', toId: 'fra', isMajorTransfer: true, speed: 0.22, offset: 0.1 },
-  { fromId: 'fra', toId: 'dxb', isMajorTransfer: true, speed: 0.17, offset: 0.6 },
-  { fromId: 'fra', toId: 'sin', isMajorTransfer: true, speed: 0.13, offset: 0.8 },
-  { fromId: 'tyo', toId: 'sin', isMajorTransfer: true, speed: 0.19, offset: 0.25 },
-  { fromId: 'wdc', toId: 'fra', isMajorTransfer: true, speed: 0.15, offset: 0.45 },
-  { fromId: 'zrh', toId: 'tyo', isMajorTransfer: true, speed: 0.12, offset: 0.7 },
+  // Major Active Data Transfers (Luminous White-to-Gold Trails)
+  { fromId: 'nyc', toId: 'lon', isMajorTransfer: true, color: '#FFE082', speed: 0.16, offset: 0.05 },
+  { fromId: 'sfo', toId: 'tyo', isMajorTransfer: true, color: '#FFE082', speed: 0.14, offset: 0.35 },
+  { fromId: 'lon', toId: 'fra', isMajorTransfer: true, color: '#FFD54F', speed: 0.22, offset: 0.1 },
+  { fromId: 'fra', toId: 'sin', isMajorTransfer: true, color: '#FFE082', speed: 0.13, offset: 0.8 },
+  { fromId: 'tyo', toId: 'sin', isMajorTransfer: true, color: '#FFD54F', speed: 0.19, offset: 0.25 },
+  { fromId: 'wdc', toId: 'fra', isMajorTransfer: true, color: '#FFE082', speed: 0.15, offset: 0.45 },
+  { fromId: 'fra', toId: 'dxb', isMajorTransfer: true, color: '#FFD54F', speed: 0.17, offset: 0.6 },
 
   // Normal Network Connections (Cyan & Ice-Blue Lines)
-  { fromId: 'sfo', toId: 'nyc', isMajorTransfer: false, speed: 0.18, offset: 0.15 },
-  { fromId: 'wdc', toId: 'nyc', isMajorTransfer: false, speed: 0.24, offset: 0.3 },
-  { fromId: 'lon', toId: 'zrh', isMajorTransfer: false, speed: 0.2, offset: 0.55 },
-  { fromId: 'fra', toId: 'arn', isMajorTransfer: false, speed: 0.19, offset: 0.4 },
-  { fromId: 'sin', toId: 'syd', isMajorTransfer: false, speed: 0.15, offset: 0.65 },
-  { fromId: 'sin', toId: 'bom', isMajorTransfer: false, speed: 0.17, offset: 0.2 },
-  { fromId: 'dxb', toId: 'bom', isMajorTransfer: false, speed: 0.21, offset: 0.85 },
-  { fromId: 'tyo', toId: 'icn', isMajorTransfer: false, speed: 0.23, offset: 0.0 },
-  { fromId: 'nyc', toId: 'gru', isMajorTransfer: false, speed: 0.14, offset: 0.5 },
-  { fromId: 'nyc', toId: 'yyz', isMajorTransfer: false, speed: 0.25, offset: 0.75 },
-  { fromId: 'lon', toId: 'arn', isMajorTransfer: false, speed: 0.18, offset: 0.9 },
-  { fromId: 'zrh', toId: 'tlv', isMajorTransfer: false, speed: 0.16, offset: 0.38 },
+  { fromId: 'sfo', toId: 'nyc', isMajorTransfer: false, color: '#00E6C3', speed: 0.18, offset: 0.15 },
+  { fromId: 'wdc', toId: 'nyc', isMajorTransfer: false, color: '#38D9FF', speed: 0.24, offset: 0.3 },
+  { fromId: 'lon', toId: 'zrh', isMajorTransfer: false, color: '#00E6C3', speed: 0.2, offset: 0.55 },
+  { fromId: 'fra', toId: 'arn', isMajorTransfer: false, color: '#38D9FF', speed: 0.19, offset: 0.4 },
+  { fromId: 'sin', toId: 'syd', isMajorTransfer: false, color: '#00E6C3', speed: 0.15, offset: 0.65 },
+  { fromId: 'sin', toId: 'bom', isMajorTransfer: false, color: '#38D9FF', speed: 0.17, offset: 0.2 },
+  { fromId: 'dxb', toId: 'bom', isMajorTransfer: false, color: '#00E6C3', speed: 0.21, offset: 0.85 },
+  { fromId: 'tyo', toId: 'icn', isMajorTransfer: false, color: '#38D9FF', speed: 0.23, offset: 0.0 },
+  { fromId: 'nyc', toId: 'gru', isMajorTransfer: false, color: '#00E6C3', speed: 0.14, offset: 0.5 },
+  { fromId: 'nyc', toId: 'yyz', isMajorTransfer: false, color: '#38D9FF', speed: 0.25, offset: 0.75 },
+  { fromId: 'lon', toId: 'arn', isMajorTransfer: false, color: '#00E6C3', speed: 0.18, offset: 0.9 },
+  { fromId: 'zrh', toId: 'tlv', isMajorTransfer: false, color: '#38D9FF', speed: 0.16, offset: 0.38 },
 ];
 
-// Create a clean 3D Billboard Sprite for high-tech HUD labels
+// Helper: Calculate 3D curved Great-Circle arc points that visibly arch high above the sphere
+function computeGreatCircleArc(
+  p1: THREE.Vector3,
+  p2: THREE.Vector3,
+  radius: number,
+  segments: number = 64
+): { points: THREE.Vector3[]; getPointAt: (t: number) => THREE.Vector3 } {
+  const v1 = p1.clone().normalize();
+  const v2 = p2.clone().normalize();
+
+  const dot = Math.min(Math.max(v1.dot(v2), -0.9999), 0.9999);
+  const omega = Math.acos(dot);
+  const sinOmega = Math.sin(omega);
+
+  // Peak altitude rises visibly into space above the globe
+  const peakAltitude = Math.min(1.2, Math.max(0.32, omega * 0.48));
+
+  const getPointAt = (t: number): THREE.Vector3 => {
+    // Slerp unit vector along great circle
+    const s1 = Math.sin((1 - t) * omega) / sinOmega;
+    const s2 = Math.sin(t * omega) / sinOmega;
+    const unitV = new THREE.Vector3(
+      v1.x * s1 + v2.x * s2,
+      v1.y * s1 + v2.y * s2,
+      v1.z * s1 + v2.z * s2
+    ).normalize();
+
+    // Smooth sinusoidal parabolic lift in 3D space
+    const alt = radius + peakAltitude * Math.sin(Math.PI * t);
+    return unitV.multiplyScalar(alt);
+  };
+
+  const points: THREE.Vector3[] = [];
+  for (let i = 0; i <= segments; i++) {
+    points.push(getPointAt(i / segments));
+  }
+
+  return { points, getPointAt };
+}
+
+// Create billboard sprite for technical HUD labels
 function createHubLabelSprite(label: string): THREE.Sprite {
   if (typeof document === 'undefined') {
     return new THREE.Sprite();
@@ -81,22 +120,22 @@ function createHubLabelSprite(label: string): THREE.Sprite {
   canvas.height = 64;
   const ctx = canvas.getContext('2d');
   if (ctx) {
-    ctx.fillStyle = 'rgba(7, 20, 29, 0.92)';
-    ctx.strokeStyle = 'rgba(0, 230, 195, 0.6)';
-    ctx.lineWidth = 2.5;
+    ctx.fillStyle = 'rgba(7, 20, 29, 0.94)';
+    ctx.strokeStyle = 'rgba(0, 230, 195, 0.7)';
+    ctx.lineWidth = 2;
 
     ctx.beginPath();
-    ctx.roundRect(8, 8, 240, 48, 12);
+    ctx.roundRect(8, 8, 240, 48, 10);
     ctx.fill();
     ctx.stroke();
 
     ctx.fillStyle = '#00E6C3';
     ctx.beginPath();
-    ctx.arc(28, 32, 6, 0, Math.PI * 2);
+    ctx.arc(28, 32, 5, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.fillStyle = '#F4F8FC';
-    ctx.font = 'bold 20px "Courier New", monospace';
+    ctx.font = 'bold 18px "Courier New", monospace';
     ctx.textBaseline = 'middle';
     ctx.fillText(label, 44, 32);
   }
@@ -109,7 +148,7 @@ function createHubLabelSprite(label: string): THREE.Sprite {
     depthWrite: false,
   });
   const sprite = new THREE.Sprite(mat);
-  sprite.scale.set(0.48, 0.12, 1);
+  sprite.scale.set(0.42, 0.105, 1);
   return sprite;
 }
 
@@ -120,7 +159,7 @@ interface NetworkArcConnectionsProps {
 export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConnectionsProps) {
   const groupRef = useRef<THREE.Group>(null);
 
-  // Map hubs by ID and precompute their 3D positions and normal quaternions
+  // Hub positions and quaternions on the globe surface
   const hubData = useMemo(() => {
     const map = new Map<
       string,
@@ -146,32 +185,26 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
     return map;
   }, []);
 
-  // Compute curved 3D Bezier arc paths rising high above the globe
+  // Compute 3D curved Great-Circle arc paths rising above the globe
   const arcCurves = useMemo(() => {
+    const radius = 2.032;
     return ARC_CONFIGS.map((cfg) => {
       const from = hubData.get(cfg.fromId);
       const to = hubData.get(cfg.toId);
       if (!from || !to) return null;
 
-      const p1 = from.position;
-      const p2 = to.position;
-      const distance = p1.distanceTo(p2);
+      const { points, getPointAt } = computeGreatCircleArc(
+        from.position,
+        to.position,
+        radius,
+        64
+      );
 
-      // Arc rises high above the sphere surface in 3D space
-      const midpoint = p1.clone().add(p2).multiplyScalar(0.5);
-      const normal = midpoint.clone().normalize();
-      const altitude = 2.032 + Math.min(Math.max(distance * 0.42, 0.28), 1.15);
-      const controlPoint = normal.multiplyScalar(altitude);
-
-      // Create quadratic Bezier curve
-      const curve = new THREE.QuadraticBezierCurve3(p1, controlPoint, p2);
-      const curvePoints = curve.getPoints(54);
-      const geometry = new THREE.BufferGeometry().setFromPoints(curvePoints);
-
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
       const material = new THREE.LineBasicMaterial({
-        color: cfg.isMajorTransfer ? '#FFD700' : '#00E6C3',
+        color: cfg.color || (cfg.isMajorTransfer ? '#FFE082' : '#00E6C3'),
         transparent: true,
-        opacity: cfg.isMajorTransfer ? 0.82 : 0.52,
+        opacity: cfg.isMajorTransfer ? 0.85 : 0.6,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
@@ -181,72 +214,79 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
         cfg,
         from,
         to,
-        curve,
-        geometry,
+        getPointAt,
         lineObject,
       };
     }).filter(Boolean) as {
       cfg: ArcConfig;
       from: { hub: GlobalHub; position: THREE.Vector3; quaternion: THREE.Quaternion };
       to: { hub: GlobalHub; position: THREE.Vector3; quaternion: THREE.Quaternion };
-      curve: THREE.QuadraticBezierCurve3;
-      geometry: THREE.BufferGeometry;
+      getPointAt: (t: number) => THREE.Vector3;
       lineObject: THREE.Line;
     }[];
   }, [hubData]);
 
-  // Hub target ring geometries
-  const targetRingGeo = useMemo(() => new THREE.RingGeometry(0.045, 0.065, 32), []);
-  const pulseRingGeo = useMemo(() => new THREE.RingGeometry(0.03, 0.05, 32), []);
+  // Target reticle ring and pulse wave ring geometries
+  const targetRingGeo = useMemo(() => new THREE.RingGeometry(0.045, 0.062, 32), []);
+  const pulseRingGeo = useMemo(() => new THREE.RingGeometry(0.03, 0.048, 32), []);
 
-  // Refs for animated pulse rings and moving comet beads
+  // Refs for animated pulse rings, beacons, and moving comets
   const pulseRingsRef = useRef<{ [key: string]: THREE.Mesh | null }>({});
+  const hubBeaconsRef = useRef<{ [key: string]: THREE.Mesh | null }>({});
   const cometHeadsRef = useRef<(THREE.Mesh | null)[]>([]);
   const cometTailsRef = useRef<(THREE.Mesh | null)[][]>([]);
 
-  // Smooth continuous animation loop
+  // Smooth continuous animation loop based on elapsed time
   useFrame((state, delta) => {
     if (groupRef.current) {
-      // Rotation synchronized with DigitalEarthSphere
       groupRef.current.rotation.y += delta * (reducedMotion ? 0.015 : 0.045);
     }
 
     const t = state.clock.getElapsedTime();
 
-    // 1. Animate hub pulse rings
+    // 1. Hub expanding pulse rings & subtle node blinking
     GLOBAL_HUBS.forEach((hub, idx) => {
       const ring = pulseRingsRef.current[hub.id];
       if (ring) {
-        const pulseCycle = (t * (hub.isPrimary ? 1.6 : 1.1) + idx * 0.3) % 1;
-        const scale = 1 + pulseCycle * 2.8;
+        const pulseCycle = (t * (hub.isPrimary ? 1.4 : 1.0) + idx * 0.25) % 1;
+        const scale = 1 + pulseCycle * 2.6;
         ring.scale.set(scale, scale, 1);
         const mat = ring.material as THREE.MeshBasicMaterial;
         if (mat) {
           mat.opacity = Math.max(0, (1 - pulseCycle) * 0.75);
         }
       }
+
+      const beacon = hubBeaconsRef.current[hub.id];
+      if (beacon) {
+        const blink = Math.sin(t * 3.5 + idx * 0.7) * 0.2 + 0.8;
+        const bMat = beacon.material as THREE.MeshBasicMaterial;
+        if (bMat) {
+          bMat.opacity = blink;
+        }
+      }
     });
 
-    // 2. Animate moving comets and photon pulses along arcs
+    // 2. Animate small light particles traveling along curved 3D arcs
     arcCurves.forEach((arc, idx) => {
       const speed = reducedMotion ? arc.cfg.speed * 0.4 : arc.cfg.speed;
       const progress = (t * speed + arc.cfg.offset) % 1;
 
-      // Leading head
+      // Leading photon head
       const head = cometHeadsRef.current[idx];
       if (head) {
-        const pt = arc.curve.getPoint(progress);
+        const pt = arc.getPointAt(progress);
         head.position.copy(pt);
       }
 
-      // Multi-point trailing tail for major white-to-gold data transfers
+      // Multi-point trailing beads for white-gold major transfers
       const tails = cometTailsRef.current[idx];
       if (tails && tails.length > 0) {
         tails.forEach((tailMesh, tailIdx) => {
           if (tailMesh) {
             const lag = (tailIdx + 1) * 0.016;
             const tailProgress = (progress - lag + 1) % 1;
-            const pt = arc.curve.getPoint(tailProgress);
+            const pt = arc.getPointAt(tailProgress);
             tailMesh.position.copy(pt);
           }
         });
@@ -257,22 +297,22 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
   return (
     <group ref={groupRef}>
       {/* ========================================================= */}
-      {/* 1. CURVED 3D CONNECTION ARCS                              */}
+      {/* 1. CURVED 3D CONNECTION ARCS RISING ABOVE THE GLOBE       */}
       {/* ========================================================= */}
       {arcCurves.map((arc, idx) => {
         const isMajor = arc.cfg.isMajorTransfer;
         return (
           <group key={idx}>
-            {/* Luminous arc path */}
+            {/* Luminous curved 3D arc path */}
             <primitive object={arc.lineObject} />
 
-            {/* Leading photon/comet head */}
+            {/* Leading photon / comet head */}
             <mesh
               ref={(el) => {
                 cometHeadsRef.current[idx] = el;
               }}
             >
-              <sphereGeometry args={[isMajor ? 0.045 : 0.03, 16, 16]} />
+              <sphereGeometry args={[isMajor ? 0.042 : 0.03, 16, 16]} />
               <meshBasicMaterial
                 color="#FFFFFF"
                 transparent
@@ -281,7 +321,7 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
               />
             </mesh>
 
-            {/* Glowing comet aura */}
+            {/* Comet trailing aura */}
             <mesh
               position={[0, 0, 0]}
               ref={(el) => {
@@ -289,9 +329,9 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
                 cometTailsRef.current[idx][0] = el;
               }}
             >
-              <sphereGeometry args={[isMajor ? 0.035 : 0.024, 12, 12]} />
+              <sphereGeometry args={[isMajor ? 0.034 : 0.022, 12, 12]} />
               <meshBasicMaterial
-                color={isMajor ? '#FFE57F' : '#38D9FF'}
+                color={isMajor ? '#FFE082' : '#38D9FF'}
                 transparent
                 opacity={0.8}
                 blending={THREE.AdditiveBlending}
@@ -307,9 +347,9 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
                     cometTailsRef.current[idx][1] = el;
                   }}
                 >
-                  <sphereGeometry args={[0.028, 10, 10]} />
+                  <sphereGeometry args={[0.026, 10, 10]} />
                   <meshBasicMaterial
-                    color="#FFC107"
+                    color="#FFCA28"
                     transparent
                     opacity={0.65}
                     blending={THREE.AdditiveBlending}
@@ -321,9 +361,9 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
                     cometTailsRef.current[idx][2] = el;
                   }}
                 >
-                  <sphereGeometry args={[0.02, 8, 8]} />
+                  <sphereGeometry args={[0.018, 8, 8]} />
                   <meshBasicMaterial
-                    color="#FF9800"
+                    color="#FFA000"
                     transparent
                     opacity={0.45}
                     blending={THREE.AdditiveBlending}
@@ -344,10 +384,20 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
 
         return (
           <group key={hub.id} position={item.position} quaternion={item.quaternion}>
-            {/* Core illuminated center beacon */}
-            <mesh position={[0, 0, 0.005]}>
-              <sphereGeometry args={[hub.isPrimary ? 0.032 : 0.024, 16, 16]} />
-              <meshBasicMaterial color="#FFFFFF" />
+            {/* Core illuminated center beacon with rhythmic blinking */}
+            <mesh
+              ref={(el) => {
+                hubBeaconsRef.current[hub.id] = el;
+              }}
+              position={[0, 0, 0.005]}
+            >
+              <sphereGeometry args={[hub.isPrimary ? 0.032 : 0.022, 16, 16]} />
+              <meshBasicMaterial
+                color="#FFFFFF"
+                transparent
+                opacity={0.9}
+                blending={THREE.AdditiveBlending}
+              />
             </mesh>
 
             {/* Target reticle ring */}
@@ -361,7 +411,7 @@ export function NetworkArcConnections({ reducedMotion = false }: NetworkArcConne
               />
             </mesh>
 
-            {/* Concentric expanding pulse wave */}
+            {/* Concentric expanding pulse wave ring */}
             <mesh
               ref={(el) => {
                 pulseRingsRef.current[hub.id] = el;

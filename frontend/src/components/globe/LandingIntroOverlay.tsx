@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Radar, Cpu, Atom, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Radar, Cpu, Atom, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface LandingIntroOverlayProps {
   onEnterLogin: () => void;
@@ -11,14 +11,28 @@ interface LandingIntroOverlayProps {
 export function LandingIntroOverlay({
   onEnterLogin,
 }: LandingIntroOverlayProps) {
-  const [progress, setProgress] = useState(72);
+  const [progress, setProgress] = useState(18);
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  // Subtle progress pulse
+  // Finite initialization sequence: advances to 100% once, then stabilizes
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => (prev >= 98 ? 72 : prev + 1));
-    }, 450);
-    return () => clearInterval(timer);
+    const steps = [
+      { target: 45, delay: 300 },
+      { target: 78, delay: 800 },
+      { target: 94, delay: 1300 },
+      { target: 100, delay: 1700 },
+    ];
+
+    const timeouts = steps.map(({ target, delay }) =>
+      setTimeout(() => {
+        setProgress(target);
+        if (target === 100) {
+          setTimeout(() => setIsInitialized(true), 350);
+        }
+      }, delay)
+    );
+
+    return () => timeouts.forEach(clearTimeout);
   }, []);
 
   return (
@@ -91,24 +105,37 @@ export function LandingIntroOverlay({
           </div>
         </div>
 
-        {/* Bottom Center: Building a Safer Digital World + Progress Bar matching Reference Image */}
+        {/* Bottom Center: Finite Initialization -> Stable Defense Grid Status Display */}
         <div className="pointer-events-auto absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 w-full max-w-sm px-4">
           <span className="text-xs font-semibold tracking-wider text-[#A8BBC8]">
             Building a Safer Digital World
           </span>
 
-          {/* Glowing Progress Bar */}
-          <div className="w-full flex items-center gap-3">
-            <div className="relative flex-1 h-2 rounded-full bg-[#0A1C26] border border-[#193543] overflow-hidden p-0.5">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-[#00E6C3] to-[#38D9FF] shadow-[0_0_12px_#00E6C3] transition-all duration-300"
-                style={{ width: `${progress}%` }}
-              />
+          {!isInitialized ? (
+            /* Genuine, finite progress initialization (runs once, stops at 100%) */
+            <div className="w-full flex items-center gap-3 transition-all duration-300">
+              <div className="relative flex-1 h-2 rounded-full bg-[#0A1C26] border border-[#193543] overflow-hidden p-0.5">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-[#00E6C3] to-[#38D9FF] shadow-[0_0_12px_#00E6C3] transition-all duration-500 ease-out"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <span className="text-xs font-mono font-bold text-[#00E6C3] min-w-8 text-right">
+                {progress}%
+              </span>
             </div>
-            <span className="text-xs font-mono font-bold text-[#00E6C3]">
-              {progress}%
-            </span>
-          </div>
+          ) : (
+            /* Stable, permanent status display once initialized (never loops or runs indefinitely) */
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A1C26]/90 border border-[#00E6C3]/40 shadow-lg shadow-[#020A10]/60 backdrop-blur-md transition-all duration-500 animate-in fade-in">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#00E6C3]" />
+              <span className="text-[11px] font-mono font-bold text-[#F4F8FC] tracking-wider">
+                DEFENSE GRID ACTIVE // 16 NODES ONLINE
+              </span>
+              <span className="text-[10px] font-mono text-[#00E6C3] bg-[#00E6C3]/15 px-1.5 py-0.5 rounded border border-[#00E6C3]/30">
+                100%
+              </span>
+            </div>
+          )}
 
           {/* Quick Action Button: Transition to Login */}
           <div className="flex items-center gap-3 mt-1">
