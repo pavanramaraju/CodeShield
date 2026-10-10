@@ -16,11 +16,11 @@ import { QuantumAnalysisModal } from '@/components/dashboard/QuantumAnalysisModa
 import { UserRole, SecurityEventItem } from '@/types';
 import { authStore } from '@/lib/authStore';
 
-// Dynamic import for 3D Globe with SSR disabled
-const CyberGlobeCanvas = dynamic(
+// Dynamic import for 3D Q-SHIELD Globe with SSR disabled
+const QShieldGlobe = dynamic(
   () =>
-    import('@/components/globe/CyberGlobeCanvas').then(
-      (mod) => mod.CyberGlobeCanvas
+    import('@/components/globe/QShieldGlobe').then(
+      (mod) => mod.QShieldGlobe
     ),
   {
     ssr: false,
@@ -192,7 +192,7 @@ export default function Home() {
 
         {/* 3D Cyber Globe WebGL Canvas */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-          <CyberGlobeCanvas />
+          <QShieldGlobe />
         </div>
 
         {/* Scene 1 Intro Callouts & Progress Bar Overlay */}

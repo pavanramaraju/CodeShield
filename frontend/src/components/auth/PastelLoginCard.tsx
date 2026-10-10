@@ -117,14 +117,8 @@ export function PastelLoginCard({
             </div>
           </div>
 
-          {/* Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00E6C3]/10 border border-[#00E6C3]/30 text-xs font-semibold text-[#00E6C3] mt-8 shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00E6C3] animate-pulse" />
-            <span>Quantum + AI Powered Security</span>
-          </div>
-
           {/* Large Headline matching reference image */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#F4F8FC] leading-[1.15] mt-5 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#F4F8FC] leading-[1.15] mt-8 tracking-tight">
             Secure Today<br />
             for a Safer<br />
             <span className="text-[#00E6C3] drop-shadow-[0_0_20px_rgba(0,230,195,0.45)]">
