@@ -1,0 +1,20 @@
+{
+  "name": "q-shield-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Q-SHIELD — Quantum-Classical Cyber Anomaly Detection Platform",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix frontend run start",
+    "lint": "npm --prefix frontend run lint"
+  },
+  "keywords": [
+    "q-shield",
+    "cybersecurity",
+    "quantum-computing",
+    "qiskit",
+    "soc-dashboard"
+  ],
+  "license": "MIT"
+}

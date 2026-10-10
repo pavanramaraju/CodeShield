@@ -6,17 +6,49 @@ ENV/
 # Python cache
 __pycache__/
 *.py[cod]
+.pytest_cache/
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment
+.env
+.env.*
+!.env.example
+*.pem
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+/.pnp
+.pnp.*
+.yarn/*
+
+# Testing
+/coverage
+
+# Next.js
+.next/
+frontend/.next/
+out/
+frontend/out/
+
+# Production
+/build
 
 # IDE / OS
 .vscode/
 .idea/
 .DS_Store
 
-.pytest_cache/
-*.db
-*.sqlite
-*.sqlite3
-.env
-.env.*
-!.env.example
-.venv/
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Misc / Frames
+video_frames/
