@@ -5,7 +5,8 @@ import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TopNav, BottomRightSparkle } from '@/components/navigation/TopNav';
 import { LandingIntroOverlay } from '@/components/globe/LandingIntroOverlay';
-import { PastelLoginCard } from '@/components/auth/PastelLoginCard';
+import { QuantumLoginCard } from '@/components/auth/QuantumLoginCard';
+import { QuantumRibbonsBackground } from '@/components/auth/QuantumRibbonsBackground';
 import { ExecutiveDashboard } from '@/components/dashboard/ExecutiveDashboard';
 import { FeaturesModal } from '@/components/modals/FeaturesModal';
 import { AboutModal } from '@/components/modals/AboutModal';
@@ -213,34 +214,34 @@ export default function Home() {
       </div>
 
       {/* ========================================================= */}
-      {/* SCENE 2: SPLIT-SCREEN CYBER LOGIN INTERFACE               */}
+      {/* SCENE 2: QUANTUM-INSPIRED CYBER LOGIN INTERFACE           */}
       {/* ========================================================= */}
       <AnimatePresence>
         {mounted && currentScene === 'login' && (
           <motion.div
             key="login-overlay"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0 w-full h-full flex items-center justify-center p-4 sm:p-6 z-50 bg-[#020A10]/80 backdrop-blur-md"
+            className="absolute inset-0 w-full h-full z-50 overflow-y-auto"
           >
-            {/* Back to Globe Floating Pill */}
-            <button
-              onClick={handleReturnToGlobe}
-              className="absolute top-6 left-8 z-30 px-4 py-2 rounded-full bg-[#0A1C26]/90 hover:bg-[#0E2431] text-xs font-semibold text-[#F4F8FC] border border-[#193543] shadow-md hover:border-[#00E6C3]/40 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5"
-            >
-              ← Back to 3D Globe
-            </button>
+            <QuantumRibbonsBackground>
+              {/* Back to Globe Floating Pill */}
+              <button
+                onClick={handleReturnToGlobe}
+                className="absolute top-6 left-6 sm:left-8 z-30 px-4 py-2 rounded-full bg-[#020B35]/85 hover:bg-[#00247D]/80 text-xs font-semibold text-[#8BA3D4] hover:text-white border border-[#0055FF]/40 shadow-[0_0_15px_rgba(0,85,255,0.25)] hover:border-[#00D9FF]/70 transition-all cursor-pointer backdrop-blur-md flex items-center gap-1.5"
+              >
+                ← Back to 3D Globe
+              </button>
 
-            {/* Split-Screen Login Card */}
-            <div className="relative z-20 w-full flex items-center justify-center">
-              <PastelLoginCard
+              {/* Centered Narrow Glassmorphism Login Card */}
+              <QuantumLoginCard
                 onSuccessLogin={handleSuccessLogin}
                 onClose={handleReturnToGlobe}
                 onOpenPrivacy={() => setShowPrivacy(true)}
               />
-            </div>
+            </QuantumRibbonsBackground>
           </motion.div>
         )}
       </AnimatePresence>
