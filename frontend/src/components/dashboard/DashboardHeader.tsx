@@ -1,8 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Search, Bell, ChevronDown, User, Shield, Check } from 'lucide-react';
-import { UserRole } from '@/types';
+import {
+  Search,
+  Bell,
+  ChevronDown,
+  Shield,
+  Check,
+  Globe2,
+  Clock,
+  Sparkles,
+  Menu,
+} from 'lucide-react';
+import { TimeRange, UserRole } from '@/types';
 import { NotificationsPopover } from './NotificationsPopover';
 
 interface DashboardHeaderProps {
@@ -12,10 +22,14 @@ interface DashboardHeaderProps {
   onSearchChange: (query: string) => void;
   onRoleSwitch: (role: UserRole) => void;
   onLogout: () => void;
-  activeNavTab?: string;
-  onNavTabChange?: (tab: string) => void;
+  timeRange?: TimeRange;
+  onTimeRangeChange?: (range: TimeRange) => void;
+  selectedEnvironment?: string;
+  onEnvironmentChange?: (env: string) => void;
+  isBackendConnected?: boolean;
   onOpenEventDetail?: (eventId: string) => void;
   onNavigateSettings?: () => void;
+  onToggleMobileMenu?: () => void;
 }
 
 export function DashboardHeader({
@@ -25,132 +39,202 @@ export function DashboardHeader({
   onSearchChange,
   onRoleSwitch,
   onLogout,
-  activeNavTab = 'analytics',
-  onNavTabChange,
+  timeRange = '24h',
+  onTimeRangeChange,
+  selectedEnvironment = 'Production Grid',
+  onEnvironmentChange,
+  isBackendConnected = false,
   onOpenEventDetail,
   onNavigateSettings,
+  onToggleMobileMenu,
 }: DashboardHeaderProps) {
   const [showSwitchDropdown, setShowSwitchDropdown] = useState(false);
+  const [showEnvDropdown, setShowEnvDropdown] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
 
   React.useEffect(() => {
-    if (!showSwitchDropdown) return;
+    if (!showSwitchDropdown && !showEnvDropdown) return;
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setShowSwitchDropdown(false);
+      if (e.key === 'Escape') {
+        setShowSwitchDropdown(false);
+        setShowEnvDropdown(false);
+      }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [showSwitchDropdown]);
+  }, [showSwitchDropdown, showEnvDropdown]);
+
+  const environments = [
+    'Production Grid',
+    'Staging Enclave',
+    'Quantum Sim Grid (Qiskit)',
+  ];
+
+  const timeRanges: { id: TimeRange; label: string }[] = [
+    { id: '15m', label: '15m' },
+    { id: '1h', label: '1h' },
+    { id: '24h', label: '24h' },
+    { id: '7d', label: '7d' },
+    { id: 'all', label: 'All' },
+  ];
 
   return (
-    <header className="h-16 px-6 border-b border-[#193543] bg-[#07141D] flex items-center justify-between select-none relative z-30">
-      {/* Left side: Search Bar matching reference image */}
-      <div className="flex items-center gap-6">
-        {/* Search Input: Search events, users, IP addresses... */}
-        <div className="relative">
+    <header className="h-16 px-4 sm:px-6 border-b border-[#1A2E3D] bg-[#081722] flex items-center justify-between select-none relative z-30">
+      {/* Left side: Mobile Toggle + Search Bar + Environment Selector */}
+      <div className="flex items-center gap-3 sm:gap-6 flex-1 max-w-2xl">
+        {/* Mobile menu button */}
+        <button
+          onClick={onToggleMobileMenu}
+          aria-label="Open navigation sidebar"
+          className="p-1.5 rounded-lg bg-[#0B1D29] border border-[#1A2E3D] text-[#A8BBC8] hover:text-[#00E5FF] lg:hidden cursor-pointer shrink-0"
+        >
+          <Menu className="w-4 h-4" />
+        </button>
+        {/* Search Input: Search events, IPs, devices... */}
+        <div className="relative flex-1 max-w-sm">
           <Search className="w-4 h-4 absolute left-3.5 top-2.5 text-[#5A7382]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search events, users, IP addresses..."
-            className="w-64 sm:w-80 pl-10 pr-3.5 py-1.5 rounded-full bg-[#0A1C26] border border-[#193543] text-xs text-[#F4F8FC] placeholder-[#5A7382] focus:outline-none focus:ring-2 focus:ring-[#00E6C3] focus:border-transparent transition-all shadow-inner"
+            placeholder="Search events, IPs, devices..."
+            aria-label="Search events, IPs, devices"
+            className="w-full pl-10 pr-3.5 py-1.5 rounded-full bg-[#0B1D29] border border-[#1A2E3D] text-xs text-[#F4F8FC] placeholder-[#5A7382] focus:outline-none focus:ring-2 focus:ring-[#00E5FF] focus:border-transparent transition-all shadow-inner"
           />
         </div>
 
-        {/* View Navigation Tabs */}
-        <nav aria-label="Dashboard views" className="hidden lg:flex items-center gap-5 text-xs">
+        {/* Workspace / Environment Selector */}
+        <div className="relative hidden md:block">
           <button
-            onClick={() => onNavTabChange?.('analytics')}
-            aria-label="Dashboard Analytics view"
-            className={`relative py-2 font-bold transition-colors cursor-pointer ${
-              activeNavTab === 'analytics'
-                ? 'text-[#00E6C3]'
-                : 'text-[#A8BBC8] hover:text-[#F4F8FC]'
-            }`}
+            onClick={() => setShowEnvDropdown((prev) => !prev)}
+            aria-label="Select environment or workspace"
+            className="px-3 py-1.5 rounded-xl bg-[#0B1D29] hover:bg-[#0F2535] border border-[#1A2E3D] text-xs font-semibold text-[#A8BBC8] hover:text-[#F4F8FC] flex items-center gap-2 cursor-pointer transition-colors"
           >
-            <span>Analytics</span>
-            {activeNavTab === 'analytics' && (
-              <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-[#00E6C3] shadow-[0_0_8px_#00E6C3] rounded-full" />
-            )}
+            <Globe2 className="w-3.5 h-3.5 text-[#00E5FF]" />
+            <span className="truncate max-w-[130px]">{selectedEnvironment}</span>
+            <ChevronDown className="w-3 h-3 text-[#5A7382]" />
           </button>
 
-          <button
-            onClick={() => onNavTabChange?.('threats')}
-            aria-label="Dashboard Threat Intelligence view"
-            className={`py-2 transition-colors cursor-pointer font-semibold ${
-              activeNavTab === 'threats'
-                ? 'text-[#00E6C3]'
-                : 'text-[#A8BBC8] hover:text-[#F4F8FC]'
-            }`}
-          >
-            Threat Intelligence
-          </button>
-
-          <button
-            onClick={() => onNavTabChange?.('connects')}
-            aria-label="Dashboard My Connects view"
-            className={`py-2 transition-colors cursor-pointer font-semibold ${
-              activeNavTab === 'connects'
-                ? 'text-[#00E6C3]'
-                : 'text-[#A8BBC8] hover:text-[#F4F8FC]'
-            }`}
-          >
-            My Connects
-          </button>
-        </nav>
+          {showEnvDropdown && (
+            <div className="absolute left-0 mt-1.5 w-52 p-1 rounded-xl bg-[#0B1D29] border border-[#1A2E3D] shadow-2xl z-50 flex flex-col gap-0.5 text-xs">
+              {environments.map((env) => (
+                <button
+                  key={env}
+                  onClick={() => {
+                    onEnvironmentChange?.(env);
+                    setShowEnvDropdown(false);
+                  }}
+                  className={`w-full px-2.5 py-1.5 rounded-lg flex items-center justify-between text-left cursor-pointer transition-colors ${
+                    selectedEnvironment === env
+                      ? 'bg-[#00E5FF]/15 text-[#00E5FF] font-bold'
+                      : 'text-[#A8BBC8] hover:bg-[#081722] hover:text-[#F4F8FC]'
+                  }`}
+                >
+                  <span className="truncate">{env}</span>
+                  {selectedEnvironment === env && (
+                    <Check className="w-3.5 h-3.5 text-[#00E5FF]" />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Right side: Notifications, User Switcher */}
+      {/* Right side: Time-Range Selector + Status Pill + Notifications + Role Switcher */}
       <div className="flex items-center gap-3 sm:gap-4">
+        {/* Time-Range Selector */}
+        <div className="hidden lg:flex items-center bg-[#0B1D29] rounded-full p-0.5 border border-[#1A2E3D] text-xs">
+          <span className="px-2 text-[#5A7382] flex items-center gap-1">
+            <Clock className="w-3 h-3" />
+          </span>
+          {timeRanges.map((tr) => (
+            <button
+              key={tr.id}
+              onClick={() => onTimeRangeChange?.(tr.id)}
+              className={`px-2.5 py-1 rounded-full font-semibold transition-all cursor-pointer ${
+                timeRange === tr.id
+                  ? 'bg-[#00E5FF] text-[#030B12] shadow-[0_0_8px_rgba(0,229,255,0.3)]'
+                  : 'text-[#A8BBC8] hover:text-[#F4F8FC]'
+              }`}
+            >
+              {tr.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Backend Connectivity Status Pill */}
+        <div
+          title={
+            isBackendConnected
+              ? 'Connected to local FastAPI backend with Qiskit 2.5.2 engine'
+              : 'Backend disconnected. Operating in simulated demo mode.'
+          }
+          className={`px-2.5 py-1 rounded-full border text-[11px] font-bold flex items-center gap-1.5 ${
+            isBackendConnected
+              ? 'bg-[#10B981]/10 border-[#10B981]/30 text-[#10B981]'
+              : 'bg-[#F59E0B]/10 border-[#F59E0B]/30 text-[#F59E0B]'
+          }`}
+        >
+          <span
+            className={`w-1.5 h-1.5 rounded-full ${
+              isBackendConnected
+                ? 'bg-[#10B981] animate-pulse'
+                : 'bg-[#F59E0B]'
+            }`}
+          />
+          <span className="hidden sm:inline">
+            {isBackendConnected ? 'Live Grid' : 'Demo Mode'}
+          </span>
+        </div>
+
         {/* Notification Bell */}
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
             aria-label="View notifications"
-            className="w-9 h-9 rounded-xl bg-[#0A1C26] hover:bg-[#0E2431] border border-[#193543] hover:border-[#00E6C3]/40 text-[#F4F8FC] flex items-center justify-center transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#00E6C3]"
+            className="w-9 h-9 rounded-xl bg-[#0B1D29] hover:bg-[#0F2535] border border-[#1A2E3D] hover:border-[#00E5FF]/40 text-[#F4F8FC] flex items-center justify-center transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#00E5FF]"
           >
             <Bell className="w-4 h-4 text-[#A8BBC8]" />
           </button>
-          <span className="absolute -top-1 -right-1 px-1.5 min-w-[16px] h-4 rounded-full bg-[#FF626B] text-[9px] font-bold text-white flex items-center justify-center pointer-events-none shadow-xs">
+          <span className="absolute -top-1 -right-1 px-1.5 min-w-[16px] h-4 rounded-full bg-[#EF4444] text-[9px] font-bold text-white flex items-center justify-center pointer-events-none shadow-xs">
             4
           </span>
 
           <NotificationsPopover
             isOpen={showNotifications}
             onClose={() => setShowNotifications(false)}
-            onOpenEventDetail={onOpenEventDetail}
+            onOpenEventDetail={(eventId: string) => {
+              setShowNotifications(false);
+              onOpenEventDetail?.(eventId);
+            }}
           />
         </div>
 
-        {/* User Profile & Switch User Dropdown */}
+        {/* Role Switcher Menu */}
         <div className="relative">
           <button
             onClick={() => setShowSwitchDropdown(!showSwitchDropdown)}
-            aria-label="User account and role menu"
-            className="flex items-center gap-2 pl-2 pr-3 py-1 rounded-full bg-[#0A1C26] hover:bg-[#0E2431] border border-[#193543] transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#00E6C3]"
+            aria-expanded={showSwitchDropdown}
+            aria-label="Switch operator role"
+            className="flex items-center gap-2 pl-2 pr-2.5 py-1 rounded-xl bg-[#0B1D29] hover:bg-[#0F2535] border border-[#1A2E3D] cursor-pointer transition-colors focus-visible:ring-2 focus-visible:ring-[#00E5FF]"
           >
-            <div className="w-7 h-7 rounded-full bg-[#00E6C3] flex items-center justify-center text-[#020A10] font-bold text-xs">
-              AD
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#00E5FF] to-[#00C9A7] flex items-center justify-center text-[#030B12] font-black text-[10px]">
+              {username.slice(0, 2).toUpperCase()}
             </div>
-            <div className="text-left hidden sm:block">
-              <div className="text-xs font-bold text-[#F4F8FC] capitalize">
-                {currentRole === 'user' ? 'Student' : currentRole}
-              </div>
-              <div className="text-[10px] text-[#A8BBC8] leading-none truncate max-w-[90px]">
-                {username}
-              </div>
+            <div className="hidden sm:flex flex-col text-left">
+              <span className="text-xs font-bold text-[#F4F8FC] capitalize leading-none">
+                {currentRole}
+              </span>
             </div>
             <ChevronDown className="w-3.5 h-3.5 text-[#5A7382]" />
           </button>
 
-          {/* Switch User Popup */}
           {showSwitchDropdown && (
-            <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-[#0A1C26] border border-[#193543] p-2.5 shadow-2xl z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-              <div className="px-2 py-1.5 text-[11px] font-bold text-[#5A7382] uppercase tracking-wider">
+            <div className="absolute right-0 mt-2 w-48 p-1.5 rounded-xl bg-[#0B1D29] border border-[#1A2E3D] shadow-2xl z-50 flex flex-col gap-1 text-xs">
+              <div className="px-2.5 py-1 text-[10px] font-bold text-[#5A7382] uppercase tracking-wider">
                 Switch Role Context
               </div>
-
               {(['admin', 'analyst', 'user'] as UserRole[]).map((role) => (
                 <button
                   key={role}
@@ -158,58 +242,45 @@ export function DashboardHeader({
                     onRoleSwitch(role);
                     setShowSwitchDropdown(false);
                   }}
-                  aria-label={`Switch role context to ${role}`}
-                  className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-xs font-semibold cursor-pointer transition-colors ${
+                  className={`w-full px-2.5 py-1.5 rounded-lg flex items-center justify-between text-left cursor-pointer transition-colors capitalize ${
                     currentRole === role
-                      ? 'bg-[#00E6C3]/20 text-[#00E6C3] border border-[#00E6C3]/30'
-                      : 'text-[#F4F8FC] hover:bg-[#07141D]'
+                      ? 'bg-[#00E5FF]/15 text-[#00E5FF] font-bold'
+                      : 'text-[#A8BBC8] hover:bg-[#081722] hover:text-[#F4F8FC]'
                   }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                        role === 'admin'
-                          ? 'bg-[#FF626B]/20 text-[#FF626B]'
-                          : role === 'analyst'
-                          ? 'bg-[#00E6C3]/20 text-[#00E6C3]'
-                          : 'bg-[#38D9FF]/20 text-[#38D9FF]'
-                      }`}
-                    >
-                      {role === 'admin' ? (
-                        <Shield className="w-3 h-3" />
-                      ) : (
-                        <User className="w-3 h-3" />
-                      )}
-                    </div>
-                    <span className="capitalize">{role === 'user' ? 'Student' : role}</span>
-                  </div>
-                  {currentRole === role && <Check className="w-3.5 h-3.5 text-[#00E6C3]" />}
+                  <span className="flex items-center gap-2">
+                    <Shield className="w-3.5 h-3.5" />
+                    {role === 'admin'
+                      ? 'Administrator'
+                      : role === 'analyst'
+                      ? 'SOC Analyst'
+                      : 'Student Operator'}
+                  </span>
+                  {currentRole === role && <Check className="w-3 h-3 text-[#00E5FF]" />}
                 </button>
               ))}
 
-              <div className="my-1.5 border-t border-[#193543]" />
+              <div className="border-t border-[#1A2E3D] my-1" />
 
               <button
                 onClick={() => {
                   setShowSwitchDropdown(false);
                   onNavigateSettings?.();
                 }}
-                className="w-full text-left px-2.5 py-2 rounded-lg text-xs font-semibold text-[#F4F8FC] hover:bg-[#07141D] transition-colors cursor-pointer flex items-center justify-between"
+                className="w-full px-2.5 py-1.5 rounded-lg text-[#A8BBC8] hover:bg-[#081722] hover:text-[#F4F8FC] flex items-center gap-2 text-left cursor-pointer transition-colors"
               >
-                <span>Node & System Settings</span>
-                <span className="text-[10px] text-[#A8BBC8]">⚙</span>
+                <Sparkles className="w-3.5 h-3.5 text-[#00E5FF]" />
+                Sensor Settings
               </button>
 
               <button
                 onClick={() => {
                   setShowSwitchDropdown(false);
-                  setTimeout(() => {
-                    onLogout();
-                  }, 50);
+                  onLogout();
                 }}
-                className="w-full text-left px-2.5 py-2 rounded-lg text-xs font-bold text-[#FF626B] hover:bg-[#FF626B]/10 transition-colors cursor-pointer"
+                className="w-full px-2.5 py-1.5 rounded-lg text-[#EF4444] hover:bg-[#EF4444]/10 flex items-center gap-2 text-left cursor-pointer transition-colors"
               >
-                Log Out
+                Sign Out
               </button>
             </div>
           )}

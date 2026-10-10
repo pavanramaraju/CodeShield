@@ -1,8 +1,20 @@
 export type UserRole = 'admin' | 'analyst' | 'user';
 
-export type ActiveTab = 'overview' | 'monitoring' | 'events' | 'ai-analysis' | 'quantum-analysis' | 'reports' | 'settings';
+export type ActiveTab =
+  | 'overview'
+  | 'live-threat-monitor'
+  | 'monitoring' // alias
+  | 'security-events'
+  | 'events' // alias
+  | 'risk-analysis'
+  | 'ai-analysis' // alias
+  | 'quantum-analysis'
+  | 'defense-policies'
+  | 'attack-timeline'
+  | 'reports'
+  | 'settings';
 
-export type TimeRange = 'live' | '24h' | '7d';
+export type TimeRange = '15m' | '1h' | '24h' | '7d' | 'all' | 'live';
 
 export interface KPIMetrics {
   threatsDetected: number;
@@ -12,6 +24,9 @@ export interface KPIMetrics {
   anomalyRate: string;
   modelConfidence: number;
   quantumVerificationRate: number;
+  highRiskCount?: number;
+  quantumProcessedCount?: number;
+  protectedSessionsCount?: number;
 }
 
 export interface SecurityEventItem {
@@ -27,12 +42,20 @@ export interface SecurityEventItem {
   ipAddress: string;
   location: string;
   mitigationAction: string;
+  device?: string;
+  investigationStatus?: 'Open' | 'Investigating' | 'Contained' | 'Resolved';
+  reasons?: string[];
+  quantumStatus?: string;
 }
 
 export interface TrafficPoint {
   time: string;
   traffic: number;
   baseline: number;
+  lowRisk?: number;
+  mediumRisk?: number;
+  highRisk?: number;
+  critical?: number;
   anomalyFlag?: boolean;
   anomalyValue?: string;
   anomalyLabel?: string;
@@ -58,4 +81,7 @@ export interface QuantumJobDetails {
   quantumConfidenceGain: string;
   finalDecision: 'ANOMALY_CONFIRMED' | 'BENIGN_VERIFIED';
   executionTimeMs: number;
+  counts?: Record<string, number>;
+  statisticName?: string;
+  statisticValue?: number;
 }

@@ -157,7 +157,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative w-screen h-screen overflow-hidden select-none font-sans bg-[#020A10]">
+    <main className="relative w-screen h-screen overflow-hidden select-none font-sans bg-[#030B12]">
       {/* ========================================================= */}
       {/* PERSISTENT 3D GLOBE LAYER                                  */}
       {/* ========================================================= */}
@@ -257,7 +257,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="absolute inset-0 w-full h-full overflow-y-auto z-40 bg-[#020A10]"
+            className="absolute inset-0 w-full h-full overflow-y-auto z-40 bg-[#030B12]"
           >
             <ExecutiveDashboard
               currentRole={currentRole}

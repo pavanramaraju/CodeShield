@@ -41,66 +41,66 @@ export function LandingIntroOverlay({
       <div className="relative w-full h-full flex flex-col justify-between">
         {/* Top Callouts Row */}
         <div className="w-full flex items-start justify-between mt-16 sm:mt-20">
-          {/* Top-Left: Scanning Global Threats */}
-          <div className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0A1C26]/85 backdrop-blur-md border border-[#193543] shadow-lg shadow-[#020A10]/60 hover:border-[#00E6C3]/60 transition-all group">
-            <div className="w-9 h-9 rounded-xl bg-[#07141D] border border-[#193543] flex items-center justify-center text-[#00E6C3] group-hover:scale-105 transition-transform">
-              <Radar className="w-5 h-5 text-[#00E6C3]" />
+          {/* Top-Left: Threat Monitoring */}
+          <div className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0B1D29]/85 backdrop-blur-md border border-[#1A2E3D] shadow-lg shadow-[#030B12]/60 hover:border-[#00E5FF]/60 transition-all group">
+            <div className="w-9 h-9 rounded-xl bg-[#081722] border border-[#1A2E3D] flex items-center justify-center text-[#00E5FF] group-hover:scale-105 transition-transform">
+              <Radar className="w-5 h-5 text-[#00E5FF]" />
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-bold text-[#F4F8FC] tracking-wide">
-                Scanning
+                Threat Monitoring
               </span>
               <span className="text-[11px] text-[#A8BBC8]">
-                Global Threats
+                Real-Time Ingress Scan
               </span>
             </div>
           </div>
 
           {/* Top-Right: Analyzing Anomalies */}
-          <div className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0A1C26]/85 backdrop-blur-md border border-[#193543] shadow-lg shadow-[#020A10]/60 hover:border-[#38D9FF]/60 transition-all group">
+          <div className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0B1D29]/85 backdrop-blur-md border border-[#1A2E3D] shadow-lg shadow-[#030B12]/60 hover:border-[#00E5FF]/60 transition-all group">
             <div className="flex flex-col text-right">
               <span className="text-xs font-bold text-[#F4F8FC] tracking-wide">
-                Analyzing
+                Analyzing Anomalies
               </span>
               <span className="text-[11px] text-[#A8BBC8]">
-                Anomalies
+                Sliding Window Engine
               </span>
             </div>
-            <div className="w-9 h-9 rounded-xl bg-[#07141D] border border-[#193543] flex items-center justify-center text-[#38D9FF] group-hover:scale-105 transition-transform">
-              <Cpu className="w-5 h-5 text-[#38D9FF]" />
+            <div className="w-9 h-9 rounded-xl bg-[#081722] border border-[#1A2E3D] flex items-center justify-center text-[#00E5FF] group-hover:scale-105 transition-transform">
+              <Cpu className="w-5 h-5 text-[#00E5FF]" />
             </div>
           </div>
         </div>
 
         {/* Bottom Callouts Row */}
         <div className="w-full flex items-end justify-between mb-28 sm:mb-24">
-          {/* Bottom-Left: Quantum Processing */}
-          <div className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0A1C26]/85 backdrop-blur-md border border-[#193543] shadow-lg shadow-[#020A10]/60 hover:border-[#00E6C3]/60 transition-all group">
-            <div className="w-9 h-9 rounded-xl bg-[#07141D] border border-[#193543] flex items-center justify-center text-[#00E6C3] group-hover:scale-105 transition-transform">
-              <Atom className="w-5 h-5 text-[#00E6C3]" />
+          {/* Bottom-Left: Quantum Analysis */}
+          <div className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0B1D29]/85 backdrop-blur-md border border-[#1A2E3D] shadow-lg shadow-[#030B12]/60 hover:border-[#73CFFF]/60 transition-all group">
+            <div className="w-9 h-9 rounded-xl bg-[#081722] border border-[#1A2E3D] flex items-center justify-center text-[#73CFFF] group-hover:scale-105 transition-transform">
+              <Atom className="w-5 h-5 text-[#73CFFF]" />
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-bold text-[#F4F8FC] tracking-wide">
-                Quantum
+                Quantum Analysis
               </span>
               <span className="text-[11px] text-[#A8BBC8]">
-                Processing
+                4-Qubit ZZFeatureMap
               </span>
             </div>
           </div>
 
-          {/* Bottom-Right: Activating Defense Layer */}
-          <div className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0A1C26]/85 backdrop-blur-md border border-[#193543] shadow-lg shadow-[#020A10]/60 hover:border-[#00E6C3]/60 transition-all group">
+          {/* Bottom-Right: Defense Status */}
+          <div className="pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0B1D29]/85 backdrop-blur-md border border-[#1A2E3D] shadow-lg shadow-[#030B12]/60 hover:border-[#10B981]/60 transition-all group">
             <div className="flex flex-col text-right">
               <span className="text-xs font-bold text-[#F4F8FC] tracking-wide">
-                Activating
+                Defense Status
               </span>
               <span className="text-[11px] text-[#A8BBC8]">
-                Defense Layer
+                Adaptive Mesh Active
               </span>
             </div>
-            <div className="w-9 h-9 rounded-xl bg-[#07141D] border border-[#193543] flex items-center justify-center text-[#00E6C3] group-hover:scale-105 transition-transform">
-              <ShieldCheck className="w-5 h-5 text-[#00E6C3]" />
+            <div className="w-9 h-9 rounded-xl bg-[#081722] border border-[#1A2E3D] flex items-center justify-center text-[#10B981] group-hover:scale-105 transition-transform">
+              <ShieldCheck className="w-5 h-5 text-[#10B981]" />
             </div>
           </div>
         </div>
